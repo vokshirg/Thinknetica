@@ -1,1 +1,1 @@
-# Thinknetika
+# ThinkNetika
