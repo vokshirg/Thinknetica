@@ -1,6 +1,6 @@
 puts "Введите свой рост"
-height = gets.chomp
-height = height.to_f
+height = gets.chomp.to_f
+# height = height.to_f
 
 if height <= 110
 	puts "У Вас идеальный вес!"
