@@ -20,21 +20,14 @@ until  name == "стоп"
 		print "Введите количество купленного товара: "
 		amount = gets.chomp.to_f
 
-		cart[name] = {cost: cost, amount: amount}
+		cart[name] = {cost: cost, amount: amount, sum: amount*cost}
 	end
 end
 
 puts cart
 
-shopping = {}
-cart.each do |name, key|
-	# puts key[:cost]
-	shopping[name] = key[:cost] * key[:amount]
-end
-
-puts shopping
 sum = 0
-shopping.each {|name,cost| sum += cost}
+cart.each {|name,cost| sum += cost[:sum]}
 puts "Итогавая сумма покупок составляет: #{sum}р."
 
 

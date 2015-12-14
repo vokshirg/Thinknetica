@@ -24,25 +24,14 @@ months = {
 	"12" => 31
 }
 
-=begin
-в этом году остался только декабрь, если человек родился в 
-декабре, то год не високосный, если же в любом другом то его 
-др в след году и год високосный
-=end 
+bissextile = year % 4 == 0
 
-visokosn = true
-visokosn = false if month == "12" && day >= Time.new.mday
-
-months["02"] = 29 if visokosn
+months["02"] = 29 if bissextile
 
 number = day
 
-if day > months[month] || year > 2015 
-	puts "такая дата не существует"
-else
-	months.each do |m,d|
-		number += d if m.to_i < month.to_i
-	end
+months.each do |m,d|
+	number += d if m.to_i < month.to_i
 end
 
-puts "#{number} является порядковым номером вашей даты рождения с начала года"
+puts "#{number} является порядковым номером указанной даты с начала года"
