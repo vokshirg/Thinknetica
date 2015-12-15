@@ -9,6 +9,7 @@
 
 name = ""
 cart = {}
+sum = 0
 until  name == "стоп"
 	print "Введите название товара: "
 	name = gets.chomp
@@ -21,13 +22,12 @@ until  name == "стоп"
 		amount = gets.chomp.to_f
 
 		cart[name] = {cost: cost, amount: amount, sum: amount*cost}
+		sum += amount*cost
 	end
 end
 
 puts cart
 
-sum = 0
-cart.each {|name,cost| sum += cost[:sum]}
 puts "Итогавая сумма покупок составляет: #{sum}р."
 
 
