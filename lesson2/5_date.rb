@@ -24,7 +24,7 @@ months = {
 	"12" => 31
 }
 
-bissextile = year % 4 == 0
+bissextile = (year % 4 == 0 && year % 100 != 0 ) || year % 400 == 0
 
 months["02"] = 29 if bissextile
 
