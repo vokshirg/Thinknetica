@@ -10,24 +10,26 @@
 name = ""
 cart = {}
 sum = 0
+
 until  name == "стоп"
+	
 	print "Введите название товара: "
 	name = gets.chomp
-	unless name == "стоп"
 
-		print "Введите цену за ед.: "
-		cost = gets.chomp.to_f
-		
-		print "Введите количество купленного товара: "
-		amount = gets.chomp.to_f
+	next if name == "стоп"
 
-		cart[name] = {cost: cost, amount: amount, sum: amount*cost}
-		sum += amount*cost
-	end
+	print "Введите цену за ед.: "
+	cost = gets.chomp.to_f
+	
+	print "Введите количество купленного товара: "
+	amount = gets.chomp.to_f
+
+	cart[name] = {cost: cost, amount: amount, sum: amount*cost}
+	sum += amount*cost
+
 end
 
 puts cart
-
-puts "Итогавая сумма покупок составляет: #{sum}р."
+puts "Итоговая сумма покупок составляет: #{sum}р."
 
 
