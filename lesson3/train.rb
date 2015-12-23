@@ -4,6 +4,7 @@ class Train
   def initialize (type, wagons)
     @type = type
     @wagons = wagons.to_i
+    @wagons = 0 if @wagons < 0
     @speed = 0
   end
 
@@ -38,7 +39,7 @@ class Train
   end
   def del_wagon
     if @speed == 0 
-      if @wagons != 0
+      if @wagons > 0
         @wagons -= 1
       else
         puts "У поезда и так нет вагонов"
