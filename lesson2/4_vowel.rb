@@ -8,7 +8,7 @@ alpabet = ('a'..'z').to_a
 alph_vowels = ["a", "e", "i", "o", "u", "y"]
 vowels = {}
 alpabet.each_with_index do |l, i|
-	vowels[l] = i+1 if alph_vowels.include?(l)
+  vowels[l] = i+1 if alph_vowels.include?(l)
 end
-	
+  
 puts vowels
