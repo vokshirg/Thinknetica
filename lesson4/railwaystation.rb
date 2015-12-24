@@ -1,9 +1,21 @@
 class RailwayStation
-  attr_reader :name
+  attr_reader :name, :trains
+  @@stantions = []
   # Имеет название, которое указывается при ее создании
   def initialize(name)
     @name = name
     @trains = []
+    @@stantions << self
+  end
+
+  def all
+    @@stantions.each do |st| 
+      puts st.name
+      unless st.trains.empty?
+        puts "Поезда на станции \"#{st.name}\": "
+        st.get_trains
+      end
+    end
   end
 
   
@@ -22,7 +34,7 @@ class RailwayStation
       end
     else
       @trains.each do |train|
-        puts train if train.type == type
+        puts train if train.class == type
       end
     end
   end

@@ -1,68 +1,89 @@
 class Train
-  attr_reader :type
-  # показывать количество вагонов
-  attr_reader :wagons
-  # показывать текущую скорость
-  attr_reader :speed
-
-  @speed = 0
-  # Имеет, тип, который указывается при создании: грузовой, пассажирский и количество вагонов.
-  def initialize (type, wagons)
-    @type = type
-    @wagons = wagons.to_i
+  attr_reader :speed, :wagons
+  
+  def initialize(wagons, station)
+    @speed = 0
+    @wagons = []
+    @current_station = station
+    station.train_arrive(self)
   end
 
-  # Поезд может:
-  # набирать скорость
   def start
     @speed = 50
   end 
-  # тормозить
+
+  def increase_speed(speed)
+    @speed += speed
+  end
+
+  def decrease_speed(speed)
+    if stoped?
+      puts "Поезд и так уже стоит"
+    elsif @speed >= speed
+      @speed -= speed
+    elsif @speed < speed
+      self.stop
+    end
+  end
+
   def stop
     @speed = 0
   end
 
-  # прицеплять/отцеплять вагоны (по одному вагону за операцию, метод просто увеличивает или уменьшает количество вагонов). Прицепка/отцепка вагонов может осуществляться только если поезд не движется.
-  def add_wagon
-    if @speed == 0 
-      @wagons += 1
-    else
-      puts "Поезд движется, прицеплять вагоны нельзя"
-    end
+  def stoped?
+    @speed == 0
   end
+
+
+
   def del_wagon
-    if @speed == 0 
-      @wagons -= 1
+    if stoped? 
+      unless @wagons.empty?
+        @wagons.pop
+      else
+        puts "У поезда и так нет вагонов"
+      end
     else
       puts "Поезд движется, отцеплять вагоны нельзя"
     end
   end
 
-  # Принимать маршрут следования
+
   def set_route(route)
     if route.class == Route
+      @current_station.train_leave(self)
       @route = route
       @current_station = route.stations[0]
+      @current_station.train_arrive(self)
     else
       puts "Данного маршрута не существует"
     end
   end
 
-  # Перемещаться между станциями, указанными в маршруте.
   def move_to_station(station)
+    @current_station.train_leave(self)
     @current_station = station
+    station.train_arrive(self)
   end
 
-  # Показывать предыдущую станцию, текущую, следующую, на основе маршрута
   def next_station
-    @next_station = @route[@route.index(@current_station) + 1]
-    puts @next_station.name
+    if @route.stations.size >= @route.stations.index(@current_station) + 1
+      @next_station = @route.stations[@route.stations.index(@current_station) + 1]
+      puts @next_station.name
+    else
+      puts "Вы находитесь на конечной"
+    end
+    
   end
   def current_station
     puts @current_station.name
   end
   def back_station
-    @back_station = @route[@route.index(@current_station) - 1]
-    puts @back_station.name
+    if @route.stations.index(@current_station) > 0
+      @back_station = @route.stations[@route.stations.index(@current_station) - 1]
+      puts @back_station.name
+    else
+      puts "Вы находитесь на первой станции"
+    end
   end
 end
