@@ -8,15 +8,15 @@ class RailwayStation
     @@stantions << self
   end
 
-  def all
-    @@stantions.each do |st| 
-      puts st.name
-      unless st.trains.empty?
-        puts "Поезда на станции \"#{st.name}\": "
-        st.get_trains
-      end
-    end
-  end
+  # def all
+  #   @@stantions.each do |st| 
+  #     puts st.name
+  #     unless st.trains.empty?
+  #       puts "Поезда на станции \"#{st.name}\": "
+  #       st.get_trains
+  #     end
+  #   end
+  # end
 
   
   # Может принимать поезда (по одному за раз)

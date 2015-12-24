@@ -4,8 +4,10 @@ class Train
   def initialize(wagons, station)
     @speed = 0
     @wagons = []
+    wagons.times {initialize_wagons}
     @current_station = station
     station.train_arrive(self)
+
   end
 
   def start
@@ -34,7 +36,17 @@ class Train
     @speed == 0
   end
 
-
+  def add_wagon(wagon)
+    if stoped? 
+      if type_match?(wagon)
+        @wagons << wagon 
+      else 
+        puts "Данный вагон нельзя прицеплять к данному типу поезда"
+      end
+    else
+      puts "Поезд движется, прицеплять вагоны нельзя"
+    end
+  end
 
   def del_wagon
     if stoped? 
@@ -86,4 +98,15 @@ class Train
       puts "Вы находитесь на первой станции"
     end
   end
+
+  protected 
+  def initialize_wagons
+    @wagons << Wagon.new
+  end
+  # совпадение типа вагонов проверяется внутри метода - соблюдаем принцип инкапсуляции
+  def type_match?(wagon)
+    true
+  end
+
+
 end
