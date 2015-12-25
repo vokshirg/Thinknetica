@@ -21,20 +21,21 @@ class MyNewApp
 
   # Создавать станции
   def create_st(name)
-    puts = "Вы создали станцию #{name}"
+    puts "Вы создали станцию #{name}"
     @st << RailwayStation.new(name)
     
   end
 
   # Создавать поезда
   def create_train(type, wagons)
+
     st = self.st_by_name
-    if type == "пассажирский"
+    if type == 2
       @tr << PassangerTrain.new(wagons, st)
     else
       @tr << CarogTrain.new(wagons, st)
     end
-    puts = "Вы создали поезд №#{@tr.lenght}"
+    puts "Вы создали поезд №#{@tr.lenght}"
   end
 
   # Добавлять вагоны к поезду
@@ -83,9 +84,9 @@ class MyNewApp
         end
 
       elsif comand == 2
-        puts "Введите тип поезда который хотите создать (\"грузовой\" или \"пассажирский\")"
-        type= gets.chomp
-        if type == "грузовой" || type == "пассажирский"
+        puts "Введите номер типа поезда который хотите создать (\"1 - грузовой\" или \"2 -пассажирский\")"
+        type= gets.chomp.to_i
+        if type == 1 || type == 2
           puts "Введите количество вагонов в новом поезде"
           wagons = gets.chomp.to_i
           
