@@ -1,5 +1,5 @@
 class Train
-  attr_reader :speed, :wagons
+  attr_reader :speed, :wagons, :current_station
   
   def initialize(wagons, station)
     @speed = 0
@@ -87,9 +87,8 @@ class Train
     end
     
   end
-  def current_station
-    puts @current_station.name
-  end
+
+
   def back_station
     if @route.stations.index(@current_station) > 0
       @back_station = @route.stations[@route.stations.index(@current_station) - 1]
