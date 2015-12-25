@@ -1,11 +1,11 @@
 class RailwayStation
   attr_reader :name, :trains
-  @@stantions = []
+  # @@stantions = []
   # Имеет название, которое указывается при ее создании
   def initialize(name)
     @name = name
     @trains = []
-    @@stantions << self
+    # @@stantions << self
   end
 
   # def all

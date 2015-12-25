@@ -36,7 +36,7 @@ class Train
     @speed == 0
   end
 
-  def add_wagon(wagon)
+  def add_wagon(wagon = Wagon.new)
     if stoped? 
       if type_match?(wagon)
         @wagons << wagon 
