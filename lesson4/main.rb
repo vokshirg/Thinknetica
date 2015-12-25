@@ -27,11 +27,12 @@ class MyNewApp
   end
 
   # Создавать поезда
-  def create_train(type,wagons)
+  def create_train(type, wagons)
+    st = self.st_by_name
     if type == "пассажирский"
-      @tr << PassangerTrain.new(wagons, st_by_name)
+      @tr << PassangerTrain.new(wagons, st)
     else
-      @tr << CarogTrain.new(wagons, st_by_name)
+      @tr << CarogTrain.new(wagons, st)
     end
     puts = "Вы создали поезд №#{@tr.lenght}"
   end
@@ -86,9 +87,9 @@ class MyNewApp
         type= gets.chomp
         if type == "грузовой" || type == "пассажирский"
           puts "Введите количество вагонов в новом поезде"
-          wagons = gets.chomp
+          wagons = gets.chomp.to_i
           
-          create_train(type, wagons, st_by_name)
+          create_train(type, wagons)
         else
           puts "Вы указали неправильный тип"
         end
@@ -101,13 +102,13 @@ class MyNewApp
         del_wagon(train_by_num)
 
       elsif comand == 5
-        tr_to_st(train_by_num, st_by_name)
+        tr_to_st(train_by_num)
 
       elsif comand == 6
-        st
+        puts st
 
       elsif comand == 7
-        tr
+        puts tr
 
       elsif comand == 8
         break
@@ -120,7 +121,7 @@ class MyNewApp
     
   end
 
-  private
+  protected
 
   def train_by_num
     puts "Введите номер поезда"
