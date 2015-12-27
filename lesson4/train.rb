@@ -36,10 +36,10 @@ class Train
     @speed == 0
   end
 
-  def add_wagon(wagon = Wagon.new)
+  def add_wagon(wagon)
     if stoped? 
       if type_match?(wagon)
-        @wagons << wagon 
+        @wagons << wagon
       else 
         puts "Данный вагон нельзя прицеплять к данному типу поезда"
       end

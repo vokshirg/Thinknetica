@@ -9,10 +9,9 @@ require_relative 'cargowagon'
 
 
 class RailWayManager
+  private
   # Просматривать список станций и список поездов на станции
   attr_reader :st, :tr
-
-  public
 
   def initialize
     @st = []
@@ -22,18 +21,32 @@ class RailWayManager
   # Создавать станции
   def create_st
     name = ""
-
-    while name == ""
-      puts "Введите название станции"
+    is_repeat = true
+    while name == "" || is_repeat
+      print "Введите название станции: "
       name = gets.chomp
-      if name != ""
+      if @st.empty?
+         is_repeat = false
+       else
+        @st.each do |st|
+          if st.name == name
+            is_repeat = true
+            break
+          else
+            is_repeat = false
+          end
+        end
+      end
+
+      if name != "" && !is_repeat
         break
       else
-        puts "Вы указали пустое значение для названия станции"
+        puts "Или Вы указали пустое значение для названия станции или такая станция уже существует"
       end
     end
-    puts "Вы создали станцию \"#{name}\""
+
     @st << RailwayStation.new(name)
+    puts "Вы создали станцию \"#{name}\""
     @st[-1]
     
     
@@ -41,14 +54,19 @@ class RailWayManager
 
   # Создавать поезда
   def create_train
-    print "Введите номер типа поезда который хотите создать (\"1 - грузовой\" или \"2 -пассажирский\"): "
-    type= gets.chomp.to_i
-    if type == 1 || type == 2
+    type = 0
+    while type != 1 && type != 2
+      print "Введите номер типа поезда который хотите создать (\"1 - грузовой\" или \"2 -пассажирский\"): "
+      type = gets.chomp.to_i
+      if type != 1 && type != 2
+        puts "Вы указали неправильный тип"
+      end
+    end
+
+    wagons = 0
+    while wagons <= 0
       print "Введите количество вагонов в новом поезде: "
       wagons = gets.chomp.to_i
-      
-    else
-      puts "Вы указали неправильный тип"
     end
 
     if type == 2
@@ -62,20 +80,79 @@ class RailWayManager
 
   # Добавлять вагоны к поезду
   def add_wagon
-    train_by_num.add_wagon
+    tr = train_by_num
+    tr.add_wagon
+    puts "Вы добавили вагон к поезду №#{@tr.index(tr)+1}, теперь их #{tr.wagons.length}"
+
   end
 
   # Отцеплять вагоны от поезда
   def del_wagon
-    train_by_num.del_wagon
+    tr = train_by_num
+    tr.del_wagon
+    puts "Вы отцепили вагон от поезда №#{@tr.index(tr)+1}, теперь их #{tr.wagons.length}"
   end
 
   # Помещать поезда на станцию
   def tr_to_st
-    train_by_num.move_to_station(st_by_name)
+    tr = train_by_num
+    st = st_by_name
+    tr.move_to_station(st)
+    puts "Поезд №#{@tr.index(tr)+1} размещен на станции #{st.name}"
   end
 
- def ui
+  def train_by_num
+    num = -1
+    if @tr.length > 0
+      while @tr[num - 1].nil? || num <= 0
+        print "Введите номер поезда: "
+        num = gets.chomp.to_i
+        puts "Такого поезда не существует" if @tr[num - 1].nil?
+      end
+      train = @tr[num - 1]
+      train
+    else
+      puts "Сначала необходимо создать хотя бы один поезд"
+      create_train
+    end
+
+  end
+
+  def st_by_name
+    if @st.length == 0
+      puts "Необходимо создать хотя бы одну станцию"
+      create_st
+    else
+      count = @st.length
+      while count == @st.length
+        print "Введите имя станции где будет размещен поезд: "
+        name_st = gets.chomp
+        count = 0
+
+        @st.each_with_index do |st|
+          if st.name == name_st
+            return st
+            break
+          else
+            count += 1
+          end
+        end
+
+        if count == @st.length
+          puts "Такой станции не существует. Существуют: "
+          @st.each_with_index do |st|
+            puts st.name
+          end
+        end  
+      end
+      
+    end
+
+  end
+  
+  public
+
+  def ui
     comand = ""
 
     while comand != 9
@@ -109,53 +186,6 @@ class RailWayManager
 
     end
     
-  end
-
-  protected
-
-  def train_by_num
-    num = -1
-    if @tr.length > 0
-      while @tr[num].nil?
-        print "Введите номер поезда: "
-        num = gets.chomp.to_i - 1
-        puts "Такого поезда не существует" if @tr[num].nil?
-      end
-      train = @tr[num]
-      train
-    else
-      puts "Сначала необходимо создать хотя бы один поезд"
-      create_train
-    end
-
-  end
-
-  def st_by_name
-    if @st.length == 0
-      puts "Необходимо создать хотя бы одну станцию"
-      create_st
-    else
-
-      print "Введите имя станции где будет размещен поезд: "
-      name_st = gets.chomp
-      count = 0
-
-      @st.each_with_index do |st|
-        if st.name == name_st
-          return st
-          break
-        else
-          count += 1
-        end
-      end
-
-      if count == @st.length
-        puts "Такой станции не существует"
-        ui
-      end
-
-    end
-
   end
 
 end
