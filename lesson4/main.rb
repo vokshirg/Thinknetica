@@ -9,7 +9,7 @@ require_relative 'cargowagon'
 
 
 class RailWayManager
-  private
+
   # Просматривать список станций и список поездов на станции
   attr_reader :st, :tr
 
@@ -18,6 +18,43 @@ class RailWayManager
     @tr = []
   end
 
+  def ui
+    comand = ""
+
+    while comand != 9
+      puts "_________________________________"
+      puts "Введите номер команды: "
+      puts "1. Создать станцию"
+      puts "2. Создать поезд"
+      puts "3. Добавить вагон к поезду"
+      puts "4. Отцепить вагон от поезда"
+      puts "5. Разместить поезд на станции"
+      puts "6. Список станций"
+      puts "7. Список поездов"
+      puts "8. Количество вагонов поезда"
+      puts "9. Закрыть"
+
+      comand = gets.chomp.to_i
+
+      case comand
+      when 1; create_st
+      when 2; create_train
+      when 3; add_wagon
+      when 4; del_wagon
+      when 5; tr_to_st
+      when 6; puts st
+      when 7; puts tr
+      when 8; puts "В данном поезде #{train_by_num.wagons.length} вагонов(а)"
+      when 9; break
+      else
+        puts "Команда задана неверно"
+      end
+
+    end
+    
+  end
+
+  private
   # Создавать станции
   def create_st
     name = ""
@@ -48,7 +85,6 @@ class RailWayManager
     @st << RailwayStation.new(name)
     puts "Вы создали станцию \"#{name}\""
     @st[-1]
-    
     
   end
 
@@ -150,44 +186,6 @@ class RailWayManager
 
   end
   
-  public
-
-  def ui
-    comand = ""
-
-    while comand != 9
-      puts "_________________________________"
-      puts "Введите номер команды: "
-      puts "1. Создать станцию"
-      puts "2. Создать поезд"
-      puts "3. Добавить вагон к поезду"
-      puts "4. Отцепить вагон от поезда"
-      puts "5. Разместить поезд на станции"
-      puts "6. Список станций"
-      puts "7. Список поездов"
-      puts "8. Количество вагонов поезда"
-      puts "9. Закрыть"
-
-      comand = gets.chomp.to_i
-
-      case comand
-      when 1; create_st
-      when 2; create_train
-      when 3; add_wagon
-      when 4; del_wagon
-      when 5; tr_to_st
-      when 6; puts st
-      when 7; puts tr
-      when 8; puts "В данном поезде #{train_by_num.wagons.length} вагонов(а)"
-      when 9; break
-      else
-        puts "Команда задана неверно"
-      end
-
-    end
-    
-  end
-
 end
 
 railway = RailWayManager.new
