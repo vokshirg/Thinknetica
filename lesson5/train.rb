@@ -5,7 +5,8 @@ class Train
   include InstanceCounter
   attr_reader :speed, :wagons, :current_station
 
-  @@trains = []
+  @@trains = {}
+  @@inst = 0
   
   def initialize(wagons, station)
     @speed = 0
@@ -14,20 +15,18 @@ class Train
     wagons.times {initialize_wagons}
     @current_station = station
     station.train_arrive(self)
-    @@trains << self
-    @number = @@trains.length
+    @@trains[@@trains.length + 1] = self
 
     register_instance
 
   end
 
   def self.find(number)
-    @@trains.each do |train|
-      if train.number == number
-        train
-        break
-      end
-    end
+    @@trains[number]
+  end
+
+  def self.all
+    @@trains
   end
 
   def start

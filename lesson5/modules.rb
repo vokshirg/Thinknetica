@@ -1,47 +1,44 @@
 module Manufacturer
-	@manufacturer = ""
-	def set_manufacturer(man)
-		# self.manufacturer = man
-		@manufacturer = man
-	end
+  @manufacturer = ""
+  def set_manufacturer(man)
+    @manufacturer = man
+  end
 
-	def manufacturer
-		# puts self.manufacturer
-		puts @manufacturer
-	end
+  def manufacturer
+    puts @manufacturer
+  end
 end
 
 module InstanceCounter
-	
-	def self.included(base)
-		@@inst = 0
-		base.extend ClassMethods
-		base.send :include, InstanceMethods
-		
-	end
+  
+  def self.included(base)
+    @@inst = 0
+    base.extend ClassMethods
+    base.send :include, InstanceMethods
+    
+  end
 
-	module ClassMethods
-		
-		# @inst = 0
-		def instances
-			# @inst
-			self.class.class_variable_get(:@@inst)
-		end
+  module ClassMethods
+    
+    attr_accessor :inst
+    @inst = 0
 
-		# protected
+    def instances
+      @inst
+    end
 
-		# def register_instance
-		# 	@inst += 1
-		# end
-	end
+  end
 
-	module InstanceMethods
-		protected
-		def register_instance
-			puts self.class.class_variables
-			# self.class.register_instance
-			self.class.class_variable_set(:@@inst, self.class.class_variable_get(:@@inst)+1)
-		end
-	end
+  module InstanceMethods
+    protected
+    def register_instance
+      puts self.class.class_variables
+      unless self.class.inst.nil? 
+        self.class.inst += 1 
+      else
+        self.class.inst = 1
+      end
+    end
+  end
 
 end

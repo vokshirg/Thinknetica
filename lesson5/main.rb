@@ -193,12 +193,17 @@ require_relative 'modules'
 # railway.ui
 
 rs = RailwayStation.new "First"
-puts RailwayStation.instances
+
 
 tr = Train.new 1, rs
 tr2 = Train.new 1, rs
 
 
-puts Train.instances
-puts RailwayStation.instances
+puts Train.all
+puts Train.find(1)
+puts RailwayStation.all
+
+puts "_________________________________"
+puts "Всего поездов #{Train.instances}"
+puts "Всего станций #{RailwayStation.instances}"
 
