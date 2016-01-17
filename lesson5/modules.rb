@@ -31,7 +31,7 @@ module InstanceCounter
     protected
     
     def register_instance
-      self.class.inst = 0 if self.class.inst.nil?
+      self.class.inst ||= 0
       self.class.inst += 1 
     end
   end

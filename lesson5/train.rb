@@ -1,5 +1,3 @@
-require_relative 'modules'
-
 class Train
   include Manufacturer
   include InstanceCounter

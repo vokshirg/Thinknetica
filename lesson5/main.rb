@@ -1,3 +1,4 @@
+require_relative 'modules'
 require_relative 'train'
 require_relative 'cargotrain'
 require_relative 'passangertrain'
@@ -6,7 +7,7 @@ require_relative 'railwaystation'
 require_relative 'wagon'
 require_relative 'passangerwagon'
 require_relative 'cargowagon'
-require_relative 'modules'
+
 
 
 # class RailWayManager
