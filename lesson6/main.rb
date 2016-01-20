@@ -14,7 +14,7 @@ require_relative 'cargowagon'
 rs = RailwayStation.new "first"
 
 
-tr = Train.new "123-aa", 1, rs
+tr = Train.new "12aa", 1, rs
 tr2 = Train.new '12123', 1, rs
 
 

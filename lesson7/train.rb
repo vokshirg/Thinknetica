@@ -6,14 +6,14 @@ class Train
   
   @@trains = {}
   
-  def initialize(number, wagons, station)
+  def initialize(number, wagons, volume, station)
     
     @speed = 0
     @wagons = []
     @number = number.to_s
 
-    wagons.times {initialize_wagons}
     @current_station = station
+    wagons.times {initialize_wagons(volume)}
 
     validate!
 
@@ -24,6 +24,14 @@ class Train
     register_instance
 
   end
+
+
+  # def self.blocktr(&block)
+  #   @wagons.each do |w|
+  #     yield(w)
+  #   end
+  # end
+  
 
   def self.find(number)
     @@trains[number]
@@ -123,8 +131,8 @@ class Train
 
   protected
 
-  def initialize_wagons
-    @wagons << Wagon.new
+  def initialize_wagons(volume)
+    @wagons << Wagon.new(volume)
   end
  
   def type_match?(wagon)
