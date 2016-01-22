@@ -24,35 +24,15 @@ class RailwayStation
   # все станции и для каждой станции выводит список поездов в формате:
   #   Номер поезда, тип, кол-во вагонов
 
-  def self.all_trains(&block)
-    @@stantions.each do |name, st|
-      puts "Станция \"#{name}\""
-      st.trains.each do |number, tr|
-        print " Поезд №#{number}. "
-        print "Тип: #{tr.class}. "
-        puts  "Вагонов: #{tr.wagons.count}"
-        tr.wagons.each do |w|
-          print "    Вагон №#{w.number}. "
-          print "Тип: #{w.class}. "
-          if w.class == CargoWagon
-            print "Свободный объем: #{w.free_capacity}. "
-            puts "Занятый объем: #{w.filled_capacity}. "
-          elsif w.class == PassangerWagon
-            print "Свободных мест: #{w.free_places}. "
-            puts "Занятых мест: #{w.occupied_places}. "
-          else
-            puts ""
-          end
-        end
-      end
+
+  def all_trains(&block)
+    @trains.each do |number, train|
+      print " Поезд №#{number}. "
+      print "Тип: #{train.class}. "
+      puts  "Вагонов: #{train.wagons.count}"
+      yield(train)
     end
   end
-
-  # def self.blockst(&block)
-  #   @trains.each do |tr|
-  #     yield(tr)
-  #   end
-  # end
   
   def train_arrive(train)
     @trains[train.number] = train

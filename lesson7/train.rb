@@ -26,11 +26,11 @@ class Train
   end
 
 
-  # def self.blocktr(&block)
-  #   @wagons.each do |w|
-  #     yield(w)
-  #   end
-  # end
+  def all_wagons(&block)
+    @wagons.each do |w|
+      yield(w)
+    end
+  end
   
 
   def self.find(number)
