@@ -26,10 +26,7 @@ class RailwayStation
 
 
   def all_trains(&block)
-    @trains.each do |number, train|
-      print " Поезд №#{number}. "
-      print "Тип: #{train.class}. "
-      puts  "Вагонов: #{train.wagons.count}"
+    @trains.each do |train|
       yield(train)
     end
   end

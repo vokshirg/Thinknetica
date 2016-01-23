@@ -206,14 +206,10 @@ class RailWayManager
 
   end
 
-  # rescue 
-  #   retry
-  # end
-  
 end
 
-railway = RailWayManager.new
-railway.ui
+# railway = RailWayManager.new
+# railway.ui
 
 
 
@@ -229,10 +225,11 @@ puts "_________________________________"
 
 RailwayStation.all.each do |name, st|
   puts name
-  st.all_trains do |train|
-    
+  st.all_trains do |number, train|
+    print " Поезд №#{number}. "
+    print "Тип: #{train.class}. "
+    puts  "Вагонов: #{train.wagons.count}"
     train.all_wagons do |w|
-
       print "    Вагон №#{w.number}. "
       print "Тип: #{w.class}. "
       if w.class == CargoWagon
