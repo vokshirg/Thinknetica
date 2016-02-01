@@ -3,6 +3,14 @@
 <p>
   <strong>Название:</strong>
   <%= @route.name %>
+
+  <% @route.railway_stations.map do |st| %>
+    <div class="field">
+
+      <%= st.title %><br>
+    </div>
+  <% end %>
+
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |

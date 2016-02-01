@@ -1,14 +1,14 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_route, only: [:show, :edit, :update, :destroy, :add_railway_station, :delete_railway_station]
 
-  def index 
+  def index
     @routes = Route.all
   end
 
   def show
   end
 
-  def new 
+  def new
     @route = Route.new
   end
 
@@ -36,6 +36,17 @@ class RoutesController < ApplicationController
     @route.destroy
     redirect_to routes_path
   end
+
+  def add_railway_station
+    @route.railway_stations << RailwayStation.find(params[:railway_station_id])
+    redirect_to edit_route_path
+  end
+
+  def delete_railway_station
+    @route.railway_stations.delete(params[:railway_station_id])
+    redirect_to edit_route_path
+  end
+
 
   private
 

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   resources :routes
+  get '/routes/:id/add_station/:railway_station_id' => 'routes#add_railway_station'
+  get '/routes/:id/del_station/:railway_station_id' => 'routes#delete_railway_station'
   resources :trains
   resources :railway_stations
   get 'welcome/index'
 
   root 'welcome#index'
+
+  resources :passangers
+    resources :tickets
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

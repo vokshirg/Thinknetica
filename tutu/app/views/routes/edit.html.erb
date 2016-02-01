@@ -17,6 +17,23 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+
+  <div class="field">
+  <b>Список станций:</b><br>
+    <% @route.railway_stations.map do |st| %>
+        <%= st.title %> <%= link_to 'Удалить станцию', "del_station/#{st.id}" %><br>
+    <% end %>
+  <div class="field">
+  __________________________
+  </div>
+    <% RailwayStation.all.each do |st| %>
+      <% unless @route.railway_stations.exists?(st.id) %>
+        <%= st.title %> <%= link_to 'Добавить станцию', "add_station/#{st.id}" %><br>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'Изменить' %>
   </div>
