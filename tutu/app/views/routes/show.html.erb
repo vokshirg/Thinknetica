@@ -3,8 +3,9 @@
 <p>
   <strong>Название:</strong>
   <%= @route.name %>
-
-  <% @route.railway_stations.map do |st| %>
+  <br><br><br>
+  <strong>Список станций в маршруте:</strong>
+  <% @route.railway_stations.each do |st| %>
     <div class="field">
 
       <%= st.title %><br>

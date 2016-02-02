@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
-  resources :routes
-  get '/routes/:id/add_station/:railway_station_id' => 'routes#add_railway_station'
-  get '/routes/:id/del_station/:railway_station_id' => 'routes#delete_railway_station'
+
+  resources :routes do
+    get 'delete_railway_station', on: :member
+    get 'add_railway_station', on: :member
+    # member do
+      # get 'add_railway_station'
+      # get 'delete_railway_station'
+    # end
+  end
+
   resources :trains
   resources :railway_stations
-  get 'welcome/index'
 
+  get 'welcome/index'
   root 'welcome#index'
 
   resources :passangers
