@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20160131152319) do
     t.string  "number"
     t.time    "time"
     t.string  "seat"
+    t.integer "end_station_id"
+    t.integer "start_station_id"
     t.integer "passanger_id"
     t.integer "train_id"
   end

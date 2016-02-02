@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   resources :routes do
-    get 'delete_railway_station', on: :member
-    get 'add_railway_station', on: :member
+    delete 'delete_railway_station', on: :member
+    post 'add_railway_station', on: :member
     # member do
-      # get 'add_railway_station'
-      # get 'delete_railway_station'
+      # post 'add_railway_station'
+      # delete 'delete_railway_station'
     # end
   end
 
