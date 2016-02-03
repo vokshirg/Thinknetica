@@ -12,6 +12,15 @@
 <% else %>
   Не указано
 <% end %>
+  <br>
+
+<strong>Следует по маршруту:</strong>
+
+<% if @train.route.present? %>
+  <%= @train.route.name %>
+<% else %>
+  Не указано
+<% end %>
   <br><br>
 
 
