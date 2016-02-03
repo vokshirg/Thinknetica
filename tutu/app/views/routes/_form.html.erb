@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, 'Название маршрута'  %><br>
     <%= f.text_field :name %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= f.label :railway_station_ids, 'Станции в маршруте' %>
     <%= f.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, {multiple: true} %>
   </div>

@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :number %><br>
+    <%= f.label :number, 'Номер поезда'  %><br>
     <%= f.text_field :number %>
   </div>
 
@@ -22,7 +22,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "#{@train.new_record? ? 'Создать' : 'Изменить'}" %>
   </div>
-
 <% end %>
