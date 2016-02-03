@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20160131152319) do
     t.string   "number"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "railway_station_id"
+    t.integer  "current_station_id"
     t.integer  "route_id"
   end
 
