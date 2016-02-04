@@ -27,9 +27,9 @@
 
 <% if @train.wagons.present? %>
 <br>
-  Плацкартных вагонов: <%= @train.wagons_by_type(1).count %>
+  Плацкартных вагонов: <%= @train.wagons.platzkart.count %>
   <%= render 'wagon_places', {resource: @train, type: 1}  %>
-  Купейных вагонов: <%= @train.wagons_by_type(2).count %>
+  Купейных вагонов: <%= @train.wagons.kupe.count %>
   <%= render 'wagon_places', {resource: @train, type: 2}  %>
 
   <table>

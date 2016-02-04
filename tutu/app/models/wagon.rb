@@ -4,6 +4,9 @@ class Wagon < ActiveRecord::Base
 
   validates :top_places, :bottom_places,  numericality: { only_integer: true }
 
+  scope :platzkart, -> { where(wagon_type: 1) }
+  scope :kupe, -> { where(wagon_type: 2) }
+
   def type_name
     wagon_type == 1 ? 'Плацкартный' : 'Купейный'
   end
