@@ -1,9 +1,53 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>Номер поезда:</strong>
   <%= @train.number %>
 </p>
 
-<%= link_to 'Edit', edit_train_path(@train) %> |
-<%= link_to 'Back', trains_path %>
+<strong>Находится на станции:</strong>
+
+<% if @train.current_station.present? %>
+  <%= @train.current_station.title %>
+<% else %>
+  Не указано
+<% end %>
+  <br>
+
+<strong>Следует по маршруту:</strong>
+
+<% if @train.route.present? %>
+  <%= @train.route.name %>
+<% else %>
+  Не указано
+<% end %>
+  <br><br>
+
+<strong>Прицепленные вагоны:</strong>
+
+<% if @train.wagons.present? %>
+<br>
+  Плацкартных вагонов: <%= @train.wagons.platzkart.count %>
+  <%= render 'wagon_places', {resource: @train, type: 1}  %>
+  Купейных вагонов: <%= @train.wagons.kupe.count %>
+  <%= render 'wagon_places', {resource: @train, type: 2}  %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Тип вагона</th>
+        <th>Номер поезда</th>
+        <th>Верхних мест</th>
+        <th>Нижних мест</th>
+      </tr>
+    </thead>
+    <%= render @train.wagons %>
+  </table>
+<% else %>
+  Отсутствуют
+<% end %>
+  <br><br>
+
+
+<%= link_to 'Редактировать', edit_train_path(@train) %> |
+<%= link_to 'Назад', trains_path %>

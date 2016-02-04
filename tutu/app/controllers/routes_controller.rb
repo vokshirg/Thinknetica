@@ -37,15 +37,15 @@ class RoutesController < ApplicationController
     redirect_to routes_path
   end
 
-  def add_railway_station
-    @route.railway_stations << RailwayStation.find(params[:railway_station_id])
-    redirect_to edit_route_path
-  end
+  # def add_railway_station
+  #   @route.railway_stations << RailwayStation.find(params[:railway_station_id])
+  #   redirect_to edit_route_path
+  # end
 
-  def delete_railway_station
-    @route.railway_stations.delete(params[:railway_station_id])
-    redirect_to edit_route_path
-  end
+  # def delete_railway_station
+  #   @route.railway_stations.delete(params[:railway_station_id])
+  #   redirect_to edit_route_path
+  # end
 
 
   private
@@ -55,6 +55,6 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:name)
+    params.require(:route).permit(:name, railway_station_ids: [])
   end
 end

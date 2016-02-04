@@ -3,16 +3,36 @@
 <p>
   <strong>Название:</strong>
   <%= @route.name %>
-  <br><br><br>
-  <strong>Список станций в маршруте:</strong>
-  <% @route.railway_stations.each do |st| %>
-    <div class="field">
+  <br>
+  <div class="field">
 
-      <%= st.title %><br>
-    </div>
-  <% end %>
+    <% if @route.railway_stations.empty? %>
+      <strong>На данном маршруте станции отсутствуют</strong>
+    <% else %>
+      <strong>Список станций в маршруте:</strong>
+      <ol>
+        <% @route.railway_stations.each do |st| %>
+            <li> <%= st.title %></li>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
 
+  <div class="field">
+    <% if @route.trains.empty? %>
+      <strong>На данном маршруте нет поездов</strong>
+    <% else %>
+      <strong>Список поездов на маршруте:</strong>
+      <ul>
+        <% @route.trains.each do |train| %>
+            <li> <%= train.number %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
+<!-- <%= link_to 'Назад', onclick = "history.back();" %> -->
+

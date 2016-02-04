@@ -1,0 +1,7 @@
+<% if resource.wagons_by_type(type).count > 0 %>
+  | Верхних мест:
+  <%= resource.all_places(type)[0] %>
+  | Нижних мест:
+  <%= resource.all_places(type)[1] %>
+<% end %>
+<br>

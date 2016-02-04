@@ -1,43 +1,6 @@
 <h1>Редактировать маршрут</h1>
 
-<%= form_for(@route) do |f| %>
-  <% if @route.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@route.errors.count, "error") %> prohibited this route from being saved:</h2>
-
-      <ul>
-      <% @route.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-
-
-  <div class="field">
-  <b>Список станций:</b><br>
-    <% @route.railway_stations.map do |st| %>
-        <%= st.title %> <%= link_to 'Удалить станцию', delete_railway_station_route_path(@route, railway_station_id: st.id), method: :delete %><br>
-    <% end %>
-  <div class="field">
-  __________________________
-  </div>
-    <% RailwayStation.all.each do |st| %>
-      <% unless @route.railway_stations.exists?(st.id) %>
-        <%= st.title %> <%= link_to 'Добавить станцию', add_railway_station_route_path(@route, railway_station_id: st.id), method: :post %><br>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit 'Изменить' %>
-  </div>
-<% end %>
+<%= render "form" %>
 
 
 <%= link_to 'Назад', routes_path %>
