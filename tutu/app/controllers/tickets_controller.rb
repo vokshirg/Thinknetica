@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
 
     if @ticket.save
-      redirect_to @ticket, notice: 'ticket was successfully created.'
+      redirect_to @ticket, notice: 'Билет был успешно создан.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1
   def update
     if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'ticket was successfully updated.'
+      redirect_to @ticket, notice: 'Билет был успешно изменен.'
     else
       render :edit
     end
@@ -42,17 +42,17 @@ class TicketsController < ApplicationController
   # DELETE /tickets/1
   def destroy
     @ticket.destroy
-    redirect_to tickets_url, notice: 'ticket was successfully destroyed.'
+    redirect_to tickets_url, notice: 'Билет был успешно удален.'
   end
 
   private
     # Use callbacks to share common setup or consticketts between actions.
     def set_ticket
-      @ticket = ticket.find(params[:id])
+      @ticket = Ticket.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:passanger, :train)
+      params.require(:ticket).permit(:passanger, :seat, :train, :end_station_id, :start_station_id)
     end
 end
