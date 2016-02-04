@@ -27,27 +27,10 @@
 
 <% if @train.wagons.present? %>
 <br>
-  Плацкартных вагонов: <%= @train.wagons.where(wagon_type: 1).count %>
-  <% if @train.wagons.where(wagon_type: 1).count > 0 %>
-    | Верхних мест:
-    <% @train.wagons.where(wagon_type: 1).each {|w| @all_pl_top_places ||= 0; @all_pl_top_places += w.top_places} %>
-    <%= @all_pl_top_places %>
-    | Нижних мест:
-    <% @train.wagons.where(wagon_type: 1).each {|w| @all_pl_bottom_places ||= 0; @all_pl_bottom_places += w.bottom_places} %>
-    <%= @all_pl_bottom_places %>
-  <% end %>
-  <br>
-
-  Купейных вагонов: <%= @train.wagons.where(wagon_type: 2).count %>
-  <% if @train.wagons.where(wagon_type: 2).count > 0 %>
-    | Верхних мест:
-    <% @train.wagons.where(wagon_type: 2).each {|w| @all_cup_top_places ||= 0; @all_cup_top_places += w.top_places} %>
-    <%= @all_cup_top_places %>
-    | Нижних мест:
-    <% @train.wagons.where(wagon_type: 2).each {|w| @all_cup_bottom_places ||= 0; @all_cup_bottom_places += w.bottom_places} %>
-    <%= @all_cup_bottom_places %>
-  <% end %>
-  <br>
+  Плацкартных вагонов: <%= @train.wagons_by_type(1).count %>
+  <%= render 'wagon_places', {resource: @train, type: 1}  %>
+  Купейных вагонов: <%= @train.wagons_by_type(2).count %>
+  <%= render 'wagon_places', {resource: @train, type: 2}  %>
 
   <table>
     <thead>

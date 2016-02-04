@@ -8,4 +8,26 @@ class Train < ActiveRecord::Base
 
   validates :number, presence: true
 
+  def wagons_by_type(type)
+    wagons.where(wagon_type: type)
+  end
+
+  # def all_top_places(type)
+  #   @all_top_places = 0
+  #   wagons_by_type(type).each {|w| @all_top_places += w.top_places}
+  #   return @all_top_places
+  # end
+
+  # def all_bottom_places(type)
+  #   @all_bottom_places = 0
+  #   wagons_by_type(type).each {|w| @all_bottom_places += w.bottom_places}
+  #   return @all_bottom_places
+  # end
+
+  def all_places(type)
+    @all_places = [0,0]
+    wagons_by_type(type).each {|w| @all_places[0] += w.top_places; @all_places[1] += w.bottom_places}
+    return @all_places
+  end
+
 end

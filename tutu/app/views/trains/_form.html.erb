@@ -8,12 +8,12 @@
 
   <div class="field">
     <%= f.label :current_station, 'Текущая станция' %>
-    <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title, {include_blank: true} %>
+    <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title, {prompt: 'Выберите станцию'} %>
   </div>
 
   <div class="field">
     <%= f.label :current_station, 'Маршрут' %>
-    <%= f.collection_select :route_id, Route.all, :id, :name, {include_blank: true} %>
+    <%= f.collection_select :route_id, Route.all, :id, :name, {prompt: 'Выберите маршрут'} %>
   </div>
 
   <div class="actions">

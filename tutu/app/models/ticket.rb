@@ -9,12 +9,4 @@ class Ticket < ActiveRecord::Base
 
   validates :number, presence: true
 
-  def last_station
-    @last_stantion = train.route.railway_stations.last
-  end
-
-  def first_station
-    @first_stantion = train.route.railway_stations.first
-  end
-
 end
