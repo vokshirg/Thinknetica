@@ -6,8 +6,8 @@ class RailwayStationsRoute < ActiveRecord::Base
 
   default_scope { order(:sort_number) }
 
-  validates :route, uniqueness: {
-    scope: :railway_station,
+  validates :route_id, uniqueness: {
+    scope: :railway_station_id,
     message: "В маршруте не могут повторяться станции"
   }
 

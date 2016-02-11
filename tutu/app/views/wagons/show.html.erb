@@ -1,39 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-
 <h1>  <%= @wagon.type_name %> вагон</h1>
-<p>
-  Поезд №: <%= link_to @wagon.train.number, @wagon.train %>
-</p>
+<p>Поезд №: <%= link_to @wagon.train.number, @wagon.train %></p>
 <% if @wagon.train.route %>
-<p>
-  Маршрут поезда: <%= @wagon.train.route.name %>
-</p>
+<p>Маршрут поезда: <%= @wagon.train.route.name %></p>
 <% end %>
 <% if @wagon.top_places %>
-  <p>
-    Верхних мест: <%= @wagon.top_places %>
-  </p>
+  <p>Верхних мест: <%= @wagon.top_places %></p>
 <% end %>
 <% if @wagon.bottom_places %>
-  <p>
-    Нижних мест: <%= @wagon.bottom_places %>
-  </p>
+  <p>Нижних мест: <%= @wagon.bottom_places %></p>
 <% end %>
   <% if @wagon.side_top_places %>
-  <p>
-    Верхних боковых мест: <%= @wagon.side_top_places %>
-  </p>
+  <p>Верхних боковых мест: <%= @wagon.side_top_places %></p>
 <% end %>
   <% if @wagon.side_bottom_places %>
-  <p>
-    Нижних боковых мест: <%= @wagon.side_bottom_places %>
-  </p>
+  <p>Нижних боковых мест: <%= @wagon.side_bottom_places %></p>
 <% end %>
   <% if @wagon.seat_places %>
-  <p>
-    Сидячих мест: <%= @wagon.seat_places %>
-  </p>
+  <p>Сидячих мест: <%= @wagon.seat_places %></p>
 <% end %>
 
 <%= link_to 'Назад', train_path(@wagon.train) %>

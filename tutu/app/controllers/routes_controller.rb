@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy, :add_railway_station, :delete_railway_station, :change_sort_number]
+  before_action :set_route, except: [:index, :new, :create, :route_params]
 
   def index
     @routes = Route.all
@@ -48,8 +48,9 @@ class RoutesController < ApplicationController
   # end
 
   def change_sort_number
+
     st =  RailwayStation.find(params[:st_id])
-    rsr = st.railway_stations_routes.where("route_id = ?", @route.id).first
+    rsr = st.railway_stations_routes.where(route: @route).first
     rsr.sort_number = params[:sort_number]
     rsr.save
     redirect_to @route

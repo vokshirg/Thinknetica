@@ -12,10 +12,6 @@ class WagonsController < ApplicationController
     @wagon = Wagon.new
   end
 
-  def get_class(name)
-     Object.const_get(name)
-  end
-
   def create
     @wagon  = get_class(params[:wagon][:type]).new(wagon_params)
     if @wagon.save
@@ -50,4 +46,9 @@ class WagonsController < ApplicationController
   def wagon_params
     params.require(:wagon).permit(:type, :train_id, :top_places, :bottom_places, :side_top_places, :side_bottom_places, :seat_places)
   end
+
+  def get_class(name)
+     Object.const_get(name)
+  end
+  
 end

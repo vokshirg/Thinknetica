@@ -7,4 +7,8 @@ class RailwayStation < ActiveRecord::Base
 
   validates :title, presence: true
 
+  def sort_number(rt)
+    self.railway_stations_routes.where(route: rt).first.sort_number
+  end
+
 end

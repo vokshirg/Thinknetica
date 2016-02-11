@@ -8,6 +8,11 @@ class TrainsController < ApplicationController
 
   # GET /trains/1
   def show
+    if @train.reverse_sort
+      @wagons_colection = @train.wagons.reverse_order
+    else
+      @wagons_colection = @train.wagons
+    end 
   end
 
   # GET /trains/new

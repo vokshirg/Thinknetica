@@ -15,7 +15,7 @@
             <tr>
               <%= form_tag({action: :change_sort_number}, method: :patch, class: "") do %>
                 <%= hidden_field_tag(:st_id, st.id) %>
-                <td><%= text_field_tag :sort_number, @route.sort_number(st), style: "max-width: 20px; text-align: center" %></td>
+                <td><%= text_field_tag :sort_number, st.sort_number(@route), style: "max-width: 20px; text-align: center" %></td>
                 <td><%= st.title %></td>
                 <td><%= submit_tag 'Сохранить' %></td>
               <% end %>
