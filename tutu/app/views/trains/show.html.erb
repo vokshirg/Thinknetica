@@ -26,28 +26,133 @@
 <strong>Прицепленные вагоны:</strong>
 
 <% if @train.wagons.present? %>
-<br>
-  Плацкартных вагонов: <%= @train.wagons.platzkart.count %>
-  <%= render 'wagon_places', {resource: @train, type: 1}  %>
-  Купейных вагонов: <%= @train.wagons.kupe.count %>
-  <%= render 'wagon_places', {resource: @train, type: 2}  %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Тип вагона</th>
-        <th>Номер поезда</th>
-        <th>Верхних мест</th>
-        <th>Нижних мест</th>
-      </tr>
-    </thead>
-    <%= render @train.wagons %>
+  <% if @train.reverse_sort
+    wagons_colection = @train.wagons.reverse_order
+  else
+    wagons_colection = @train.wagons
+  end %>
+
+  <br>
+  <table cellspacing="0px" border=1>
+    <tr>
+      <th>
+          Тип вагона: кол-во
+      </th>
+      <th>
+          № вагонов
+      </th>
+      </th>
+      <th>
+          Верхних мест
+      </th>
+      </th>
+      <th>
+          Нижних мест
+      </th>
+      </th>
+      <th>
+          Боковых верхних мест
+      </th>
+      </th>
+      <th>
+          Боковых нижних мест
+      </th>
+      <th>
+          Сидячих мест
+      </th>
+
+    </tr>
+
+    <tr>
+      <td>
+        Плацкартных вагонов: <%= wagons_colection.economy.count %>
+        <%= render 'wagon_places', {resource: @train, type: 1}  %>
+      </td>
+      <td>
+        <% if wagons_colection.economy.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: wagons_colection.economy %>
+        </td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "top_places") %></td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "bottom_places") %></td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "side_top_places") %></td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "side_bottom_places") %></td>
+        <td></td>
+      <% end %>
+    </tr>
+
+    <tr>
+        <td>
+        Купейных вагонов: <%= wagons_colection.coupe.count %>
+        <%= render 'wagon_places', {resource: @train, type: 2}  %>
+      </td>
+      <td>
+        <% if wagons_colection.coupe.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: wagons_colection.coupe %>
+        </td>
+        <td><%= @train.places_of_wagon(CoupeWagon, "top_places") %></td>
+        <td><%= @train.places_of_wagon(CoupeWagon, "bottom_places") %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      <% end %>
+    </tr>
+
+    <tr>
+      <td>
+        CB вагонов: <%= wagons_colection.cb.count %>
+        <%= render 'wagon_places', {resource: @train, type: 1}  %>
+      </td>
+      <td>
+        <% if wagons_colection.cb.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: wagons_colection.cb %>
+        </td>
+        <td></td>
+        <td><%= @train.places_of_wagon(CBWagon, "bottom_places") %></td>
+        <td></td>
+        <td><%= @train.places_of_wagon(CBWagon, "side_bottom_places") %></td>
+        <td></td>
+      <% end %>
+
+    </tr>
+
+    <tr>
+      <td>
+        Сидячих вагонов: <%= wagons_colection.seat.count %>
+        <%= render 'wagon_places', {resource: @train, type: 2}  %>
+      </td>
+      <td>
+        <% if wagons_colection.seat.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: wagons_colection.seat %>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= @train.places_of_wagon(SeatWagon, "seat_places") %></td>
+        <% end %>
+
+    </tr>
+
   </table>
+
 <% else %>
-  Отсутствуют
+  Уданного поезда вагоны отсутствуют
 <% end %>
-  <br><br>
+<br>
+<br>
+<hr>
+<br>
+<br>
 
 
-<%= link_to 'Редактировать', edit_train_path(@train) %> |
+<%= link_to 'Редактировать поезд', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>

@@ -9,4 +9,8 @@ class Route < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  def sort_number(st)
+    st.railway_stations_routes.where("route_id = ?", id).first.sort_number
+  end
+
 end

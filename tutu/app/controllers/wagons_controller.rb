@@ -12,8 +12,12 @@ class WagonsController < ApplicationController
     @wagon = Wagon.new
   end
 
+  def get_class(name)
+     Object.const_get(name)
+  end
+
   def create
-    @wagon  = Wagon.new(wagon_params)
+    @wagon  = get_class(params[:wagon][:type]).new(wagon_params)
     if @wagon.save
       redirect_to wagons_path
     else
@@ -44,6 +48,6 @@ class WagonsController < ApplicationController
   end
 
   def wagon_params
-    params.require(:wagon).permit(:wagon_type, :train_id, :top_places, :bottom_places)
+    params.require(:wagon).permit(:type, :train_id, :top_places, :bottom_places, :side_top_places, :side_bottom_places, :seat_places)
   end
 end

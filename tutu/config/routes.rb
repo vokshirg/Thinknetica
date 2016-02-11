@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :routes do
     delete 'delete_railway_station', on: :member
     post 'add_railway_station', on: :member
+    patch 'change_sort_number', on: :member
     # member do
       # post 'add_railway_station'
       # delete 'delete_railway_station'
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :trains
-  resources :railway_stations
+  resources :railway_stations 
   resources :wagons
   resources :tickets
 

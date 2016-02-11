@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: [:show, :edit, :update, :destroy, :add_railway_station, :delete_railway_station]
+  before_action :set_route, only: [:show, :edit, :update, :destroy, :add_railway_station, :delete_railway_station, :change_sort_number]
 
   def index
     @routes = Route.all
@@ -47,6 +47,14 @@ class RoutesController < ApplicationController
   #   redirect_to edit_route_path
   # end
 
+  def change_sort_number
+    st =  RailwayStation.find(params[:st_id])
+    rsr = st.railway_stations_routes.where("route_id = ?", @route.id).first
+    rsr.sort_number = params[:sort_number]
+    rsr.save
+    redirect_to @route
+  end
+
 
   private
 
@@ -55,6 +63,6 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:name, railway_station_ids: [])
+    params.require(:route).permit(:name, :st_id, railway_station_ids: [])
   end
 end
