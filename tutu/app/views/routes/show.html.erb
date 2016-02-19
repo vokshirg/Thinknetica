@@ -11,12 +11,20 @@
     <% else %>
       <strong>Список станций в маршруте:</strong>
       <table>
-        <% @route.railway_stations.each do |st| %>
+        <tr>
+          <th>Порядок в маршруте | </th>
+          <th>Название станции | </th>
+          <th>Время прибытия | </th>
+          <th>Время отправления</th>
+        </tr>
+          <% @route.railway_stations.each do |st| %>
             <tr>
-              <%= form_tag({action: :change_sort_number}, method: :patch, class: "") do %>
-                <%= hidden_field_tag(:st_id, st.id) %>
+              <%= form_tag(change_route_params_railway_station_path(st), method: :patch, class: "") do %>
+                <%= hidden_field_tag(:route_id, @route.id) %>
                 <td><%= text_field_tag :sort_number, st.sort_number(@route), style: "max-width: 20px; text-align: center" %></td>
                 <td><%= st.title %></td>
+                <td><%= text_field_tag(:arrive_time, st.arrive_time(@route)) %></td>
+                <td><%= text_field_tag(:leave_time, st.leave_time(@route)) %></td>
                 <td><%= submit_tag 'Сохранить' %></td>
               <% end %>
 

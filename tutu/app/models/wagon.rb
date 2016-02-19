@@ -4,8 +4,6 @@ class Wagon < ActiveRecord::Base
 
   validates :number, presence: true
 
-  before_validation :set_number
-
   scope :economy, -> { where(type: EconomyWagon) }
   scope :coupe, -> { where(type: CoupeWagon) }
   scope :cb, -> { where(type: CBWagon) }
@@ -13,14 +11,13 @@ class Wagon < ActiveRecord::Base
 
   default_scope { order(:number) }
 
-  protected
-
-  def set_number
-    if self.train.wagons
-      last_number = self.train.wagons.last.number
+  def set_number(train)
+    if train.wagons
+      last_number = train.wagons.last.number
     else
       last_number = 0
     end
+    last_number = train.wagons[-2].number if self.new_record?
     self.number = last_number + 1
   end
 

@@ -37,26 +37,6 @@ class RoutesController < ApplicationController
     redirect_to routes_path
   end
 
-  # def add_railway_station
-  #   @route.railway_stations << RailwayStation.find(params[:railway_station_id])
-  #   redirect_to edit_route_path
-  # end
-
-  # def delete_railway_station
-  #   @route.railway_stations.delete(params[:railway_station_id])
-  #   redirect_to edit_route_path
-  # end
-
-  def change_sort_number
-
-    st =  RailwayStation.find(params[:st_id])
-    rsr = st.railway_stations_routes.where(route: @route).first
-    rsr.sort_number = params[:sort_number]
-    rsr.save
-    redirect_to @route
-  end
-
-
   private
 
   def set_route
@@ -64,6 +44,6 @@ class RoutesController < ApplicationController
   end
 
   def route_params
-    params.require(:route).permit(:name, :st_id, railway_station_ids: [])
+    params.require(:route).permit(:name, railway_station_ids: [])
   end
 end

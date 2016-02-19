@@ -1,14 +1,9 @@
-<%= form_for @wagon.becomes(Wagon) do |f| %>
+<%= form_for [@train, @wagon.becomes(Wagon)] do |f| %>
   <%= render 'common/errors', resource: @wagon %>
 
   <div class="field">
     <%= f.label :type, 'Тип поезда'  %><br>
     <%= f.select(:type, options_for_select([['Плацкартный', EconomyWagon], ['Купейный', CoupeWagon], ['CB', CBWagon], ['Сидячий', SeatWagon]])) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :train, 'Поезд к которому прицеплен вагон' %>
-    <%= f.collection_select :train_id, Train.all, :id, :number %>
   </div>
 
   <div class="field">
