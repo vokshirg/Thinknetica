@@ -12,7 +12,7 @@ class TrainsController < ApplicationController
       @wagons_colection = @train.wagons.reverse_order
     else
       @wagons_colection = @train.wagons
-    end 
+    end
   end
 
   # GET /trains/new
