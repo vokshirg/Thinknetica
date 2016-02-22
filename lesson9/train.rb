@@ -1,9 +1,14 @@
 class Train
   include Manufacturer, InstanceCounter, Validator
   extend Attrs
-  attr_reader :speed, :wagons, :current_station, :number
+  attr_reader :speed, :wagons, :current_station
+  attr_accessor :number
 
   NUMBER_PATTERN = /(.|\d){3}-*(.|\d){2}/i
+
+  validate :current_station, :type, RailwayStation
+  validate :number, :format, NUMBER_PATTERN
+  validate :number, :presence
 
   @@trains = {}
 
@@ -13,8 +18,6 @@ class Train
     @number = number.to_s
     @current_station = station
     wagons.times { initialize_wagons(volume) }
-    self.class.validate @current_station, :type, RailwayStation
-    self.class.validate @number, :format, NUMBER_PATTERN
 
     validate!
     station.train_arrive(self)

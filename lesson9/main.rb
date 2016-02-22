@@ -1,9 +1,9 @@
 require_relative 'modules'
+require_relative 'railwaystation'
 require_relative 'train'
 require_relative 'cargotrain'
 require_relative 'passangertrain'
 require_relative 'route'
-require_relative 'railwaystation'
 require_relative 'wagon'
 require_relative 'passangerwagon'
 require_relative 'cargowagon'
@@ -197,21 +197,21 @@ end
 # railway = RailWayManager.new
 # railway.ui
 
-# rs = RailwayStation.new 'first'
-# tr = Train.new '12aaa', 1, 10, rs
-# tr2 = Train.new '12123', 1, 20, rs
-# rs2 = RailwayStation.new 'second'
-# tr3 = CargoTrain.new '00001', 10, 10, rs2
-# tr4 = PassangerTrain.new '00002', 11, 10, rs2
-# puts '_________________________________'
+rs = RailwayStation.new 'first'
+tr = Train.new '12a3a', 1, 10, rs
+tr2 = Train.new '12123', 1, 20, rs
+rs2 = RailwayStation.new 'second'
+tr3 = CargoTrain.new '00001', 10, 10, rs2
+tr4 = PassangerTrain.new '00002', 11, 10, rs2
+tr.number = ''
+puts '_________________________________'
 
-# puts "Поезд вылидный?  #{tr.valid?}"
-# puts "Станция вылидная?  #{rs.valid?}"
+puts "Поезд вылидный?  #{tr.valid?}"
+puts "Станция вылидная?  #{rs.valid?}"
 
 puts '_________________________________'
 
-rs = RailwayStation.new 'first'
-tr = Train.new '12aaa', 1, 10, rs
+
 Train.attr_accessor_with_history("variable")
 Train.strong_attr_acessor("str", "String")
 
@@ -224,9 +224,8 @@ puts tr.variable
 puts tr.variable_history
 
 puts tr.str = "sasd"
-# tr.str = 1
-# puts tr.methods
-# puts Train.methods
+
+
 
 
 # RailwayStation.all.each do |name, st|
