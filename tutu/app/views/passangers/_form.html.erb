@@ -1,0 +1,13 @@
+<%= form_for(@passanger) do |f| %>
+  <%= render 'common/errors', resource: @passanger %>
+
+  <div class="field">
+    <%= f.label :name, 'ФИО'  %><br>
+    <%= f.text_field :name %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "#{@passanger.new_record? ? 'Создать' : 'Изменить'}" %>
+  </div>
+<% end %>
