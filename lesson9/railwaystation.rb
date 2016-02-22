@@ -5,14 +5,14 @@ class RailwayStation
 
   RAILWAYSTATION_NAME_PATTERN = /[a-zA-Z]{4,}/
 
+  validate :name, :presence
 
   @@stantions = {}
 
   def initialize(name)
     @name = name.to_s.capitalize
     @trains = {}
-    
-    self.class.validate @name, :presence
+
     validate!
 
     @@stantions[@name] = self
