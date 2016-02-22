@@ -16,7 +16,8 @@
 
 
 footer {
-  position: absolute;
+  position: fixed;
+  background-color: #FFF;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -31,6 +32,7 @@ footer p {
 
 body {
   padding: 20px;
+  margin-bottom: 120px;
 }
 
 footer nav {

@@ -5,23 +5,21 @@ class Train < ActiveRecord::Base
   has_many :tickets
   has_many :wagons
 
-
   validates :number, presence: true
+  validates :number, uniqueness: true
+  # if self.wagons
+    # validates :wagons, uniqueness: {
+    #   scope: :number,
+    #   message: "К поезду не могут быть прикреплены вагоны с одинаковым номером"
+    # }
+  # end
 
   def wagons_by_type(type)
-    wagons.where(wagon_type: type)
+    wagons.where(type: type)
   end
 
-  def all_top_places(type)
-    @all_top_places = 0
-    wagons_by_type(type).each {|w| @all_top_places += w.top_places}
-    return @all_top_places
-  end
-
-  def all_bottom_places(type)
-    @all_bottom_places = 0
-    wagons_by_type(type).each {|w| @all_bottom_places += w.bottom_places}
-    return @all_bottom_places
+  def places_of_wagon(wagon_type, places_type)
+    wagons.where(type: wagon_type).sum(places_type.to_s)
   end
 
 end

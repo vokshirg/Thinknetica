@@ -8,6 +8,11 @@ class TrainsController < ApplicationController
 
   # GET /trains/1
   def show
+    if @train.reverse_sort
+      @wagons_colection = @train.wagons.reverse_order
+    else
+      @wagons_colection = @train.wagons
+    end 
   end
 
   # GET /trains/new
@@ -52,6 +57,6 @@ class TrainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def train_params
-      params.require(:train).permit(:number, :current_station_id, :route_id)
+      params.require(:train).permit(:number, :current_station_id, :route_id, :reverse_sort)
     end
 end
