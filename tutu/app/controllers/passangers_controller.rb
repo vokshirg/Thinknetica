@@ -24,7 +24,7 @@ class PassangersController < ApplicationController
     @passanger = Passanger.new(passanger_params)
 
     if @passanger.save
-      # redirect_to @passanger, notice: 'Билет был успешно создан.'
+      # redirect_to @passanger, notice: 'Пассажир был успешно создан.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class PassangersController < ApplicationController
   # PATCH/PUT /passangers/1
   def update
     if @passanger.update(passanger_params)
-      redirect_to @passanger, notice: 'Билет был успешно изменен.'
+      redirect_to @passanger, notice: 'Пассажир был успешно изменен.'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class PassangersController < ApplicationController
   # DELETE /passangers/1
   def destroy
     @passanger.destroy
-    redirect_to passangers_url, notice: 'Билет был успешно удален.'
+    redirect_to passangers_url, notice: 'Пассажир был успешно удален.'
   end
 
   private
