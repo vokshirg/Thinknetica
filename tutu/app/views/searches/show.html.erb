@@ -9,30 +9,19 @@
 
   <br>
   <%= submit_tag "Поиск!" %>
-
-  <% if @results %>
-    <%# start_station.name %>
-    <table>
-      <tr>
-        <th>
-          Номер поезда
-        </th>
-        <th>
-          Маршрут
-        </th>
-      </tr>
-      <%= render(partial: "result", collection: @results)%>
-    </table>
-
-  <% end %>
-
-
 <% end %>
 
-<!--
-Поиск
+<% if @results %>
+  <table>
+    <tr>
+      <th>
+        Номер поезда
+      </th>
+      <th>
+        Маршрут
+      </th>
+    </tr>
+    <%= render(partial: "result", collection: @results)%>
+  </table>
 
-найденные поезда
-Купить билет на поезд
-
-ФИО , Паспорт -->
+<% end %>

@@ -18,8 +18,11 @@ Rails.application.routes.draw do
   end
 
   resource :search, only: [:new, :show, :edit] do
-    post 'find', on: :member
-    get 'buy_ticket', on: :member
+    member do
+      post 'find'
+      post 'fill_ticket'
+    end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
