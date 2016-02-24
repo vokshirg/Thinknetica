@@ -14,17 +14,4 @@ class SearchesController < ApplicationController
     render :show, start_station: params[:start_station], end_station: params[:end_station]
   end
 
-  def fill_ticket
-    render :fill_ticket
-  end
-
-  private
-
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def search_params
-    #   params.require(:ticket).permit(:number, :time, :seat, :end_station_id, :start_station_id, :passanger_id, :train_id)
-    # end
-
-
 end

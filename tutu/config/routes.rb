@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resource :search, only: [:new, :show, :edit] do
     member do
       post 'find'
-      post 'fill_ticket'
     end
 
   end

@@ -2,7 +2,7 @@
   <td><%= result.number %></td>
   <td><%= result.route.name %></td>
   <td>
-    <%= form_tag fill_ticket_search_path, method: :post do %>
+    <%= form_tag new_passanger_ticket_path(Passanger.first), method: :get do %>
       <%= hidden_field_tag :end_station_id, @end_station.id %>
       <%= hidden_field_tag :start_station_id, @start_station.id %>
       <%= hidden_field_tag :train_id, result.id %>
