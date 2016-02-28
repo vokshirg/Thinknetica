@@ -14,9 +14,9 @@ class WagonsController < ApplicationController
   end
 
   def create
-    cl = get_class(params[:wagon][:type])
+    # cl = get_class(params[:wagon][:type])
     @wagon  = @train.wagons.new(wagon_params)
-    @wagon.set_number(@train)
+
     if @wagon.save
       redirect_to train_wagons_path(@train)
     else
@@ -31,7 +31,7 @@ class WagonsController < ApplicationController
     if @wagon.update(wagon_params)
       redirect_to train_wagons_path(@wagon.train)
     else
-      render :index
+      render :edit
     end
   end
 
