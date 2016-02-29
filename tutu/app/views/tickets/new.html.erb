@@ -2,7 +2,7 @@
 <p>
   Укажите данные пассажира, на которого покупается билет
 </p>
-<%= form_tag passanger_tickets_path(Passanger.first), method: :post do %>
+<%= form_tag tickets_path(current_passanger), method: :post do %>
   <%# render 'common/errors', resource: @ticket %>
 
   <div class="field">
@@ -13,7 +13,6 @@
     <%= t.hidden_field :end_station_id, value: params[:end_station_id] %>
     <%= t.hidden_field :start_station_id, value: params[:start_station_id] %>
     <%= t.hidden_field :train_id, value: params[:train_id] %>
-    <%= t.hidden_field :passanger_id, value: params[:passanger_id] %>
   <% end %>
 
 </div>

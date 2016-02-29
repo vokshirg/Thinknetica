@@ -1,0 +1,39 @@
+<%= form_for [:admin, @train, @wagon.becomes(Wagon)] do |f| %>
+  <%= render 'common/errors', resource: @wagon %>
+
+  <% if controller.action_name == "new" || controller.action_name == "create" %>
+    <div class="field">
+      <%= f.label :type, 'Тип поезда'  %><br>
+      <%= f.select(:type, options_for_select([['Плацкартный', EconomyWagon], ['Купейный', CoupeWagon], ['CB', CBWagon], ['Сидячий', SeatWagon]])) %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :top_places, 'Верхних мест' %>
+    <%= f.number_field(:top_places, in: 1..200, step: 1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bottom_places, 'Нижних мест' %>
+    <%= f.number_field(:bottom_places, in: 1..200, step: 1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :side_top_places, 'Боковых верхних мест' %>
+    <%= f.number_field(:side_top_places, in: 1..200, step: 1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :side_bottom_places, 'Боковых нижних мест' %>
+    <%= f.number_field(:side_bottom_places, in: 1..200, step: 1) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :seat_places, 'Сидячих мест мест' %>
+    <%= f.number_field(:seat_places, in: 1..200, step: 1) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "#{@wagon.new_record? ? 'Создать' : 'Изменить'}" %>
+  </div>
+<% end %>
