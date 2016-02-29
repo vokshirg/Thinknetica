@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_passanger!
+  before_action :set_ticket, only: [:show, :destroy]
 
   # GET /tickets
   def index
@@ -15,13 +16,10 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
-  # GET /tickets/1/edit
-  def edit
-  end
-
   # POST /tickets
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.passanger_id = current_passanger.id
 
     if @ticket.save
       redirect_to @ticket, notice: 'Билет был успешно создан.'
@@ -30,14 +28,6 @@ class TicketsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tickets/1
-  def update
-    if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'Билет был успешно изменен.'
-    else
-      render :edit
-    end
-  end
 
   # DELETE /tickets/1
   def destroy

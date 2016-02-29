@@ -1,0 +1,133 @@
+
+
+<p>
+  <strong>Номер поезда:</strong>
+  <%= @train.number %>
+</p>
+
+<strong>Находится на станции:</strong>
+
+<% if @train.current_station.present? %>
+  <%= @train.current_station.title %>
+<% else %>
+  Не указано
+<% end %>
+  <br>
+
+<strong>Следует по маршруту:</strong>
+
+<% if @train.route.present? %>
+  <%= @train.route.name %>
+<% else %>
+  Не указано
+<% end %>
+  <br><br>
+
+<strong>Прицепленные вагоны:</strong><br>
+
+<% if @train.wagons.present? %>
+
+  <table cellspacing="0px" border=1>
+    <tr>
+      <th>Тип вагона: кол-во</th>
+      <th>№ вагонов</th>
+      <th>Верхних мест</th>
+      <th>Нижних мест</th>
+      <th>Боковых верхних мест</th>
+      <th>Боковых нижних мест</th>
+      <th>Сидячих мест</th>
+    </tr>
+
+    <tr>
+      <td>
+        Плацкартных вагонов: <%= @train.wagons.economy.count %>
+      </td>
+      <td>
+        <% if @train.wagons.economy.empty? %>
+          Вагоны данного типа отсутствуют
+      </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: @train.wagons.economy %>
+        </td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "top_places") %></td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "bottom_places") %></td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "side_top_places") %></td>
+        <td><%= @train.places_of_wagon(EconomyWagon, "side_bottom_places") %></td>
+        <td></td>
+      <% end %>
+    </tr>
+
+    <tr>
+        <td>
+        Купейных вагонов: <%= @train.wagons.coupe.count %>
+      </td>
+      <td>
+        <% if @train.wagons.coupe.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: @train.wagons.coupe %>
+        </td>
+        <td><%= @train.places_of_wagon(CoupeWagon, "top_places") %></td>
+        <td><%= @train.places_of_wagon(CoupeWagon, "bottom_places") %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      <% end %>
+    </tr>
+
+    <tr>
+      <td>
+        CB вагонов: <%= @train.wagons.cb.count %>
+      </td>
+      <td>
+        <% if @train.wagons.cb.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: @train.wagons.cb %>
+        </td>
+        <td></td>
+        <td><%= @train.places_of_wagon(CBWagon, "bottom_places") %></td>
+        <td></td>
+        <td><%= @train.places_of_wagon(CBWagon, "side_bottom_places") %></td>
+        <td></td>
+      <% end %>
+
+    </tr>
+
+    <tr>
+      <td>
+        Сидячих вагонов: <%= @train.wagons.seat.count %>
+      </td>
+      <td>
+        <% if @train.wagons.seat.empty? %>
+          Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
+        <% else %>
+          <%= render partial: "trains/wagon", collection: @train.wagons.seat %>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= @train.places_of_wagon(SeatWagon, "seat_places") %></td>
+        <% end %>
+
+    </tr>
+
+  </table>
+
+<% else %>
+  Уданного поезда вагоны отсутствуют
+<% end %>
+<br>
+<br>
+<hr>
+<p>
+  <%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) %> |
+  <%= link_to "Все вагоны", admin_train_wagons_path(@train) %>
+</p>
+<br>
+<br>
+
+
+<%= link_to 'Редактировать поезд', edit_admin_train_path(@train) %> |
+<%= link_to 'Назад', admin_trains_path %>
