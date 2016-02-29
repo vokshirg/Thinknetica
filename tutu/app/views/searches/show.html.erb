@@ -1,0 +1,27 @@
+<h1>Поиск билета</h1>
+
+<%= form_tag find_search_path, method: :post  do  %>
+  Начальная станция
+  <%= collection_select(@search, :start_station, RailwayStation.all, :id, :title) %>
+  <br>
+  Конечная станция
+  <%= collection_select(@search, :end_station, RailwayStation.all, :id, :title) %>
+
+  <br>
+  <%= submit_tag "Поиск!" %>
+<% end %>
+
+<% if @results %>
+  <table>
+    <tr>
+      <th>
+        Номер поезда
+      </th>
+      <th>
+        Маршрут
+      </th>
+    </tr>
+    <%= render(partial: "result", collection: @results)%>
+  </table>
+
+<% end %>

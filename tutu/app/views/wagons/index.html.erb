@@ -1,36 +1,36 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Купейные вагоны</h1>
-<% if @wagons.coupe.empty? %>
+<h2>Поезд №<%= @train.number %></h2>
+<h3>Купейные вагоны</h3>
+<% if @train.wagons.coupe.empty? %>
   Вагоны данного типа отсутствуют
+
+
 <% else %>
 <table>
   <thead>
     <tr>
       <th>№</th>
-      <th>Номер поезда</th>
       <th>Верхних мест</th>
       <th>Нижних мест</th>
     </tr>
   </thead>
 
   <tbody>
-  <%= render partial: 'wagons/coupe_wagon', collection: @wagons.coupe %>
+  <%= render partial: 'wagons/coupe_wagon', collection: @train.wagons.coupe %>
   </tbody>
 </table>
 <% end %>
 
 <br>
 
-<h1>Плацкартные вагоны</h1>
-<% if @wagons.economy.empty? %>
+<h3>Плацкартные вагоны</h3>
+<% if @train.wagons.economy.empty? %>
   Вагоны данного типа отсутствуют
 <% else %>
 <table>
   <thead>
     <tr>
       <th>№</th>
-      <th>Номер поезда</th>
       <th>Верхних мест</th>
       <th>Нижних мест</th>
       <th>Боковых Верхних мест</th>
@@ -39,7 +39,7 @@
   </thead>
 
   <tbody>
-  <%= render partial: 'wagons/economy_wagon', collection: @wagons.economy %>
+  <%= render partial: 'wagons/economy_wagon', collection: @train.wagons.economy %>
   </tbody>
 </table>
 <% end %>
@@ -47,49 +47,47 @@
 <br>
 
 
-<h1>Сидячие вагоны</h1>
-<% if @wagons.seat.empty? %>
+<h3>Сидячие вагоны</h3>
+<% if @train.wagons.seat.empty? %>
   Вагоны данного типа отсутствуют
 <% else %>
 <table>
   <thead>
     <tr>
       <th>№</th>
-      <th>Номер поезда</th>
       <th>Сидячих мест</th>
     </tr>
   </thead>
 
   <tbody>
-  <%= render partial: 'wagons/seat_wagon', collection: @wagons.seat %>
+  <%= render partial: 'wagons/seat_wagon', collection: @train.wagons.seat %>
   </tbody>
 </table>
 <% end %>
 
 <br>
 
-<h1>CB вагоны</h1>
-<% if @wagons.cb.empty? %>
+<h3>CB вагоны</h3>
+<% if @train.wagons.cb.empty? %>
   Вагоны данного типа отсутствуют
 <% else %>
 <table>
   <thead>
     <tr>
       <th>№</th>
-      <th>Номер поезда</th>
       <th>Нижних мест</th>
       <th>Боковых Нижних мест</th>
     </tr>
   </thead>
 
   <tbody>
-  <%= render partial: 'wagons/cb_wagon', collection: @wagons.cb %>
+  <%= render partial: 'wagons/cb_wagon', collection: @train.wagons.cb %>
   </tbody>
 </table>
 <% end %>
 
 <br>
 
-<%= link_to 'Добавить вагон', new_wagon_path %>
+<%= link_to 'Добавить вагон', new_train_wagon_path %>
 <br/>
 <%= link_to 'Главная', root_path %>

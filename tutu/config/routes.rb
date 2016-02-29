@@ -1,25 +1,28 @@
 Rails.application.routes.draw do
 
-  resources :routes do
-    delete 'delete_railway_station', on: :member
-    post 'add_railway_station', on: :member
-    patch 'change_sort_number', on: :member
-    # member do
-      # post 'add_railway_station'
-      # delete 'delete_railway_station'
-    # end
+  resources :routes
+
+  resources :trains do
+    resources :wagons, shallow: true
   end
 
-  resources :trains
-  resources :railway_stations 
-  resources :wagons
-  resources :tickets
+  resources :railway_stations do
+    patch 'change_route_params', on: :member
+  end
 
   get 'welcome/index'
   root 'welcome#index'
 
-  resources :passangers
-    resources :tickets
+  resources :passangers do
+    resources :tickets, shallow: true
+  end
+
+  resource :search, only: [:new, :show, :edit] do
+    member do
+      post 'find'
+    end
+
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

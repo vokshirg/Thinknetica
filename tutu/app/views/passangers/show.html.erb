@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+<h2>Пассажир</h2>
+<p>
+  <p><b>Пассажир:</b> <%= @passanger.name %></p>
+  <p><b>Билеты:</b>   <%= render @passanger.tickets if @passanger.tickets %></p>
+
+</p>
+
+<%= link_to 'Редактировать', edit_passanger_path(@passanger) %> |
+<%= link_to 'Назад', search_path %>

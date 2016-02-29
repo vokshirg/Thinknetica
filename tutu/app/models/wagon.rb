@@ -2,9 +2,9 @@ class Wagon < ActiveRecord::Base
 
   belongs_to :train
 
-  validates :number, presence: true
+  before_validation :set_number, on: :create
 
-  before_validation :set_number
+  validates :number, presence: true
 
   scope :economy, -> { where(type: EconomyWagon) }
   scope :coupe, -> { where(type: CoupeWagon) }
@@ -13,14 +13,8 @@ class Wagon < ActiveRecord::Base
 
   default_scope { order(:number) }
 
-  protected
-
   def set_number
-    if self.train.wagons
-      last_number = self.train.wagons.last.number
-    else
-      last_number = 0
-    end
+    last_number = self.train.wagons.maximum(:number) || 0
     self.number = last_number + 1
   end
 
