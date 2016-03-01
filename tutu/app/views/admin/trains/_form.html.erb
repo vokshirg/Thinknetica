@@ -2,28 +2,28 @@
   <%= render 'common/errors', resource: @train %>
 
   <div class="field">
-    <%= f.label :number, 'Номер поезда'  %><br>
+    <%= f.label :number %>
     <%= f.text_field :number %>
   </div>
 
   <div class="field">
     <%= f.radio_button(:reverse_sort, true) %>
-    <%= f.label(:reverse_sort_true, "Сортировка с хвоста") %>
+    <%= f.label(:reverse_sort_true) %>
     <%= f.radio_button(:reverse_sort, false) %>
-    <%= f.label(:reverse_sort_false, "с головы") %>
+    <%= f.label(:reverse_sort_false) %>
   </div>
 
   <div class="field">
-    <%= f.label :current_station, 'Текущая станция' %>
+    <%= f.label :current_station %>
     <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title, {prompt: 'Выберите станцию'} %>
   </div>
 
   <div class="field">
-    <%= f.label :current_station, 'Маршрут' %>
+    <%= f.label :route %>
     <%= f.collection_select :route_id, Route.all, :id, :name, {prompt: 'Выберите маршрут'} %>
   </div>
 
   <div class="actions">
-    <%= f.submit "#{@train.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{@train.new_record? ? t('common.create') : t('common.update')}" %>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 <tr>
   <td><%= railway_station.title %></td>
-  <td><%= link_to 'Просмотреть', [:admin, railway_station] %></td>
-  <td><%= link_to 'Редактировать', edit_admin_railway_station_path(railway_station) %></td>
-  <td><%= link_to 'Удалить', [:admin, railway_station], method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+  <td><%= link_to t('common.show'), admin_railway_station_path(railway_station) , class: 'btn btn-sm btn-info' , class: 'btn btn-sm btn-info'%></td>
+  <td><%= link_to t('common.edit'), edit_admin_railway_station_path(railway_station), class: 'btn btn-sm btn-warning' , class: 'btn btn-sm btn-warning'%></td>
+  <td><%= link_to t('common.delete'), [:admin, railway_station], method: :delete, data: { confirm: t('common.delete_confirm') }, class: 'btn btn-sm btn-danger' %></td>
 </tr>

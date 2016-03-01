@@ -2,7 +2,7 @@
   <%= render 'common/errors', resource: @ticket %>
 
   <div class="field">
-    <%= f.label :seat, 'Имя пассажира'  %><br>
+    <%= f.label :seat, 'Имя пассажира'  %>
     <%= f.text_field :seat %>
   </div>
 
@@ -17,6 +17,6 @@
 
 
   <div class="actions">
-    <%= f.submit "#{@ticket.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{@ticket.new_record? ? t('common.create') : t('common.update')}" %>
   </div>
 <% end %>

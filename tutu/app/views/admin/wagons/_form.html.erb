@@ -3,7 +3,7 @@
 
   <% if controller.action_name == "new" || controller.action_name == "create" %>
     <div class="field">
-      <%= f.label :type, 'Тип поезда'  %><br>
+      <%= f.label :type, 'Тип поезда'  %>
       <%= f.select(:type, options_for_select([['Плацкартный', EconomyWagon], ['Купейный', CoupeWagon], ['CB', CBWagon], ['Сидячий', SeatWagon]])) %>
     </div>
   <% end %>
@@ -34,6 +34,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "#{@wagon.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{@wagon.new_record? ? t('common.create') : t('common.update')}" %>
   </div>
 <% end %>

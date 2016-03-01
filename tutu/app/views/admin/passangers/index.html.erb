@@ -2,7 +2,7 @@
 
 <h1>Список пассажиров</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Билет на пассажира:</th>
@@ -15,8 +15,8 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'Создать пассажира', new_admin_passanger_path %>
-<br/>
-<%= link_to 'Главная', root_path %>
+
+<%= link_to 'Создать пассажира', new_admin_passanger_path , class: 'btn btn-success' %>
+
+

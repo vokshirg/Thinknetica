@@ -21,22 +21,19 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100px;
+  height: 80px;
   border-top: 1px solid #CCC;
 }
 
 footer p {
   padding: 0 0 0 20px;
   line-height: 80px;
+  margin: 0;
 }
 
-body {
-  padding: 20px;
-  margin-bottom: 120px;
-}
 
 footer nav {
   float:right;
-  line-height:100px;
+  line-height:80px;
   padding-right: 20px;
 }

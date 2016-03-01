@@ -1,8 +1,8 @@
 
 
-<h1>Список маршрутов</h1>
+<h1><%= t('.title') %></h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Название маршрута</th>
@@ -15,8 +15,6 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'Создать маршрут', new_admin_route_path %>
-<br/>
-<%= link_to 'Главная', root_path %>
+
+<%= link_to 'Создать маршрут', new_admin_route_path , class: 'btn btn-success' %>

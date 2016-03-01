@@ -2,12 +2,12 @@
   <%= render 'common/errors', resource: @passanger %>
 
   <div class="field">
-    <%= f.label :name, 'ФИО'  %><br>
+    <%= f.label :name, 'ФИО'  %>
     <%= f.text_field :name %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit "#{@passanger.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{@passanger.new_record? ? t('common.create') : t('common.update')}" %>
   </div>
 <% end %>

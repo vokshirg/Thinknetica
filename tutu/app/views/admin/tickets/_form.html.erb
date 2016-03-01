@@ -2,31 +2,31 @@
   <%= render 'common/errors', resource: @ticket %>
 
   <div class="field">
-    <%= f.label :passanger_info, 'ФИО пассажира'  %><br>
+    <%= f.label :passanger_info  %>
     <%= f.text_field :passanger_info %>
   </div>
 
   <div class="field">
-    <%= f.label :seat, 'Место'  %><br>
+    <%= f.label :seat %>
     <%= f.text_field :seat %>
   </div>
 
   <div class="field">
-    <%= f.label :train_id, 'Поезд' %>
+    <%= f.label :train_id %>
     <%= f.collection_select :train_id, Train.all, :id, :number, {prompt: 'Выберите поезд'} %>
   </div>
 
   <div class="field">
-    <%= f.label :start_station, 'Начальная станция' %>
+    <%= f.label :start_station%>
     <%= f.collection_select :start_station_id, RailwayStation.all, :id, :title, {prompt: 'Выберите станцию'} %>
   </div>
 
   <div class="field">
-    <%= f.label :end_station, 'Конечная станция' %>
+    <%= f.label :end_station%>
     <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title, {prompt: 'Выберите станцию'} %>
   </div>
 
   <div class="actions">
-    <%= f.submit 'Изменить' %>
+    <%= f.submit t('common.update') %>
   </div>
 <% end %>

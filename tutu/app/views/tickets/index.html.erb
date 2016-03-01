@@ -1,6 +1,6 @@
 <h1>Список билетов</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Маршрут</th>
@@ -16,8 +16,6 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'Купить новый билет', search_path %>
-<br/>
-<%= link_to 'Главная', root_path %>
+
+<%= link_to 'Купить новый билет', search_path, class: 'btn btn-success' %>

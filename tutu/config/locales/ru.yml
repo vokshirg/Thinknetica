@@ -1,0 +1,68 @@
+ru:
+  common:
+    main: 'Главная'
+    back: 'Назад'
+    show: 'Просмотреть'
+    edit: 'Редактировать'
+    delete: 'Удалить'
+    delete_confirm: 'Вы уверены?'
+    create: 'Создать'
+    update: 'Изменить'
+    errors: 'При заполнении формы возникли ошибки'
+
+  admin:
+    railway_stations:
+      new:
+        title: 'Добавить станцию'
+      edit:
+        title: 'Редактирование станции'
+      index:
+        title: 'Список станций'
+        new_station: 'Создать станцию'
+        station_title: 'Название'
+      show:
+        title: 'Название:'
+
+
+    tickets:
+      edit:
+        title: 'Редактирование билета'
+      index:
+        title: 'Список билетов'
+        route: 'Маршрут'
+        number: '№ Поезда'
+        seat: 'Место'
+        buyer: 'Покупатель:'
+        passanger: 'Билет на пассажира:'
+        links: 'Ссылки'
+      show:
+        title: 'Билет'
+        passanger_name: 'Покупатель:'
+        passanger_info: 'Пассажир:'
+        seat: 'Место:'
+        route_name: 'Маршрут:'
+        train_number: 'Номер поезда:'
+        start_station_title: 'Место отправления:'
+        leave_time: 'Время отправления:'
+        end_station_title: 'Место назначения:'
+        arrive_time: 'Время назначения:'
+
+    routes:
+      edit:
+        title: 'Редактировать маршрут'
+      index:
+        title: 'Список маршрутов'
+      new:
+        title: 'Добавить маршрут'
+      show:
+        name: 'Название:'
+        no_stations: 'На данном маршруте станции отсутствуют'
+        have_stations: 'Список станций в маршруте:'
+        sort_number: 'Порядок в маршруте | '
+        station_name: 'Название станции | '
+        arrive_time: 'Время прибытия | '
+        leave_time: 'Время отправления'
+        save: 'Сохранить'
+
+        no_trains: 'На данном маршруте нет поездов'
+        have_trains: 'Список поездов на маршруте:'

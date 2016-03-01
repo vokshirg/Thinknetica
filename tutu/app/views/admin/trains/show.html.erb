@@ -12,7 +12,7 @@
 <% else %>
   Не указано
 <% end %>
-  <br>
+  
 
 <strong>Следует по маршруту:</strong>
 
@@ -21,9 +21,9 @@
 <% else %>
   Не указано
 <% end %>
-  <br><br>
+  
 
-<strong>Прицепленные вагоны:</strong><br>
+<strong>Прицепленные вагоны:</strong>
 
 <% if @train.wagons.present? %>
 
@@ -47,7 +47,7 @@
           Вагоны данного типа отсутствуют
       </td><td></td><td></td><td></td><td></td><td></td>
         <% else %>
-          <%= render partial: "trains/wagon", collection: @train.wagons.economy %>
+          <%= render partial: "admin/trains/wagon", collection: @train.wagons.economy %>
         </td>
         <td><%= @train.places_of_wagon(EconomyWagon, "top_places") %></td>
         <td><%= @train.places_of_wagon(EconomyWagon, "bottom_places") %></td>
@@ -65,7 +65,7 @@
         <% if @train.wagons.coupe.empty? %>
           Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
         <% else %>
-          <%= render partial: "trains/wagon", collection: @train.wagons.coupe %>
+          <%= render partial: "admin/trains/wagon", collection: @train.wagons.coupe %>
         </td>
         <td><%= @train.places_of_wagon(CoupeWagon, "top_places") %></td>
         <td><%= @train.places_of_wagon(CoupeWagon, "bottom_places") %></td>
@@ -83,7 +83,7 @@
         <% if @train.wagons.cb.empty? %>
           Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
         <% else %>
-          <%= render partial: "trains/wagon", collection: @train.wagons.cb %>
+          <%= render partial: "admin/trains/wagon", collection: @train.wagons.cb %>
         </td>
         <td></td>
         <td><%= @train.places_of_wagon(CBWagon, "bottom_places") %></td>
@@ -102,7 +102,7 @@
         <% if @train.wagons.seat.empty? %>
           Вагоны данного типа отсутствуют </td><td></td><td></td><td></td><td></td><td></td>
         <% else %>
-          <%= render partial: "trains/wagon", collection: @train.wagons.seat %>
+          <%= render partial: "admin/trains/wagon", collection: @train.wagons.seat %>
         </td>
         <td></td>
         <td></td>
@@ -118,16 +118,16 @@
 <% else %>
   Уданного поезда вагоны отсутствуют
 <% end %>
-<br>
-<br>
+
+
 <hr>
 <p>
-  <%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) %> |
+  <%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) , class: 'btn btn-success' %> |
   <%= link_to "Все вагоны", admin_train_wagons_path(@train) %>
 </p>
-<br>
-<br>
+
+
 
 
 <%= link_to 'Редактировать поезд', edit_admin_train_path(@train) %> |
-<%= link_to 'Назад', admin_trains_path %>
+<%= link_to t('common.back'), admin_trains_path , class: 'btn btn-sm btn-default'%>
