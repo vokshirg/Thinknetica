@@ -8,6 +8,7 @@ ru:
     delete_confirm: 'Вы уверены?'
     create: 'Создать'
     update: 'Изменить'
+    errors: 'При заполнении формы возникли ошибки'
 
   admin:
     railway_stations:
