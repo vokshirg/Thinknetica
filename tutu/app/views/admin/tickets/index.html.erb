@@ -1,6 +1,6 @@
 <h1><%= t('.title') %></h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th><%= t('.title') %></th>
@@ -16,9 +16,3 @@
     <%= render @tickets %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Купить новый билет', search_path %>
-<br/>
-<%= link_to t('common.main'), root_path %>

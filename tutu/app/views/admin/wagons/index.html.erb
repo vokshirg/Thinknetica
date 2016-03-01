@@ -6,7 +6,7 @@
 
 
 <% else %>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>№</th>
@@ -21,13 +21,13 @@
 </table>
 <% end %>
 
-<br>
+
 
 <h3>Плацкартные вагоны</h3>
 <% if @train.wagons.economy.empty? %>
   Вагоны данного типа отсутствуют
 <% else %>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>№</th>
@@ -44,14 +44,14 @@
 </table>
 <% end %>
 
-<br>
+
 
 
 <h3>Сидячие вагоны</h3>
 <% if @train.wagons.seat.empty? %>
   Вагоны данного типа отсутствуют
 <% else %>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>№</th>
@@ -65,13 +65,13 @@
 </table>
 <% end %>
 
-<br>
+
 
 <h3>CB вагоны</h3>
 <% if @train.wagons.cb.empty? %>
   Вагоны данного типа отсутствуют
 <% else %>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>№</th>
@@ -86,8 +86,8 @@
 </table>
 <% end %>
 
-<br>
 
-<%= link_to 'Добавить вагон', new_admin_train_wagon_path %>
-<br/>
-<%= link_to t('common.main'), root_path %>
+
+<%= link_to 'Добавить вагон', new_admin_train_wagon_path , class: 'btn btn-success' %>
+
+

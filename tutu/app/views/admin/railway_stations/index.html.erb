@@ -2,7 +2,7 @@
 
 <h1><%= t('.title') %></h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th><%= t('.station_title') %></th>
@@ -15,8 +15,8 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to t('.new_station'), new_admin_railway_station_path %>
-<br/>
-<%= link_to t('common.main'), root_path %>
+
+<%= link_to t('.new_station'), new_admin_railway_station_path , class: 'btn btn-success' %>
+
+

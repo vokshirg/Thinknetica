@@ -13,6 +13,6 @@
 
 </p>
 
-<%= link_to t('common.delete'), admin_ticket_path(@ticket), method: :delete %> |
-<%= link_to t('common.edit'), edit_admin_ticket_path(@ticket) %> |
-<%= link_to t('common.back'), admin_tickets_path %>
+<%= link_to t('common.delete'), admin_ticket_path(@ticket), method: :delete, class: 'btn btn-sm btn-danger' %> |
+<%= link_to t('common.edit'), edit_admin_ticket_path(@ticket) , class: 'btn btn-sm btn-warning' %> |
+<%= link_to t('common.back'), admin_tickets_path , class: 'btn btn-sm btn-default' %>

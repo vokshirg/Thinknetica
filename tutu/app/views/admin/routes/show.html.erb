@@ -3,14 +3,14 @@
 <p>
   <strong><%= t('.name') %></strong>
   <%= @route.name %>
-  <br>
+  
   <div class="field">
 
     <% if @route.railway_stations.empty? %>
       <strong><%= t('.no_stations') %></strong>
     <% else %>
       <strong><%= t('.have_stations') %></strong>
-      <table>
+      <table class="table">
         <tr>
           <th><%= t('.sort_number') %></th>
           <th><%= t('.station_name') %></th>
@@ -48,6 +48,6 @@
   </div>
 </p>
 
-<%= link_to t('common.edit'), edit_admin_route_path(@route) %> |
-<%= link_to t('common.back'), admin_routes_path %>
-<!-- <%= link_to t('common.back'), onclick = "history.back();" %> -->
+<%= link_to t('common.edit'), edit_admin_route_path(@route) , class: 'btn btn-sm btn-warning'%> |
+<%= link_to t('common.back'), admin_routes_path , class: 'btn btn-sm btn-default'%>
+<!-- <%= link_to t('common.back'), onclick = "history.back();" , class: 'btn btn-sm btn-default'%> -->

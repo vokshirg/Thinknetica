@@ -13,5 +13,5 @@
 
 </p>
 
-<%= link_to t('common.delete'), ticket_path(@ticket), method: :delete %> |
-<%= link_to t('common.back'), tickets_path %>
+<%= link_to t('common.delete'), ticket_path(@ticket), method: :delete, class: 'btn btn-sm btn-danger' %> |
+<%= link_to t('common.back'), tickets_path , class: 'btn btn-sm btn-default' %>

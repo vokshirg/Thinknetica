@@ -21,4 +21,4 @@
   <p>Сидячих мест: <%= @wagon.seat_places %></p>
 <% end %>
 
-<%= link_to t('common.back'), admin_train_path(@wagon.train) %>
+<%= link_to t('common.back'), admin_train_path(@wagon.train) , class: 'btn btn-sm btn-default'%>

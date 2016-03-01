@@ -2,7 +2,7 @@
 
 <h1>Список поездов</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Номер поезда</th>
@@ -15,8 +15,8 @@
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'Добавить поезд', new_admin_train_path %>
-<br/>
-<%= link_to t('common.main'), root_path %>
+
+<%= link_to 'Добавить поезд', new_admin_train_path , class: 'btn btn-success' %>
+
+
