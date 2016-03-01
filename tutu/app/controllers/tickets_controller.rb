@@ -19,7 +19,7 @@ class TicketsController < ApplicationController
   # POST /tickets
   def create
     @ticket = Ticket.new(ticket_params)
-    @ticket.passanger_id = current_passanger.id
+    @ticket.passanger = current_passanger
 
     if @ticket.save
       redirect_to @ticket, notice: 'Билет был успешно создан.'
