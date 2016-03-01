@@ -1,0 +1,8 @@
+<tr>
+  <td><%= ticket.route.name %></td>
+  <td><%= ticket.train.number %></td>
+  <td><%= ticket.seat %></td>
+  <td><%= link_to ticket.passanger.name, admin_passanger_path(ticket.passanger) %></td>
+  <td><%= ticket.passanger_info %></td>
+  <td><%= link_to 'Подробнее', admin_ticket_path(ticket)%></td>
+</tr>

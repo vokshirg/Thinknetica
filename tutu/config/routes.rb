@@ -1,27 +1,38 @@
 Rails.application.routes.draw do
-
-  resources :routes
-
-  resources :trains do
-    resources :wagons, shallow: true
-  end
-
-  resources :railway_stations do
-    patch 'change_route_params', on: :member
-  end
+  devise_for :passangers, controllers: {
+        sessions: 'passangers/sessions',
+        registrations: 'passangers/registrations'
+      }
 
   get 'welcome/index'
+  get 'welcome/admin', as: 'admin', path: 'admin'
   root 'welcome#index'
 
-  resources :passangers do
-    resources :tickets, shallow: true
-  end
-
+  resources :tickets, only: [:index, :show, :new, :create, :destroy]
   resource :search, only: [:new, :show, :edit] do
     member do
       post 'find'
     end
+  end
 
+  namespace :admin do
+    resources :routes
+
+    resources :passangers
+    resources :tickets, only: [:index, :show, :edit, :update, :destroy]
+
+    resources :trains do
+      resources :wagons, shallow: true
+    end
+
+    resources :railway_stations do
+      patch 'change_route_params', on: :member
+    end
+  end
+
+  resource :search, only: [:new, :show, :edit] do
+    post 'find', on: :member
+    get 'buy_ticket', on: :member
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

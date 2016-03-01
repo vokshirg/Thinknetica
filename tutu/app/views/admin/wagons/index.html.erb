@@ -1,0 +1,93 @@
+
+<h2>Поезд №<%= @train.number %></h2>
+<h3>Купейные вагоны</h3>
+<% if @train.wagons.coupe.empty? %>
+  Вагоны данного типа отсутствуют
+
+
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Верхних мест</th>
+      <th>Нижних мест</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%= render partial: 'admin/wagons/coupe_wagon', collection: @train.wagons.coupe %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<h3>Плацкартные вагоны</h3>
+<% if @train.wagons.economy.empty? %>
+  Вагоны данного типа отсутствуют
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Верхних мест</th>
+      <th>Нижних мест</th>
+      <th>Боковых Верхних мест</th>
+      <th>Боковых Нижних мест</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%= render partial: 'admin/wagons/economy_wagon', collection: @train.wagons.economy %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+
+<h3>Сидячие вагоны</h3>
+<% if @train.wagons.seat.empty? %>
+  Вагоны данного типа отсутствуют
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Сидячих мест</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%= render partial: 'admin/wagons/seat_wagon', collection: @train.wagons.seat %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<h3>CB вагоны</h3>
+<% if @train.wagons.cb.empty? %>
+  Вагоны данного типа отсутствуют
+<% else %>
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Нижних мест</th>
+      <th>Боковых Нижних мест</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <%= render partial: 'admin/wagons/cb_wagon', collection: @train.wagons.cb %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
+
+<%= link_to 'Добавить вагон', new_admin_train_wagon_path %>
+<br/>
+<%= link_to 'Главная', root_path %>

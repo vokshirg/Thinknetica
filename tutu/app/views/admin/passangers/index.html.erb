@@ -1,0 +1,22 @@
+
+
+<h1>Список пассажиров</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Билет на пассажира:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @passangers %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Создать пассажира', new_admin_passanger_path %>
+<br/>
+<%= link_to 'Главная', root_path %>

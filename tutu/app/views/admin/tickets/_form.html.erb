@@ -1,0 +1,32 @@
+<%= form_for([:admin, @ticket]) do |f| %>
+  <%= render 'common/errors', resource: @ticket %>
+
+  <div class="field">
+    <%= f.label :passanger_info, 'ФИО пассажира'  %><br>
+    <%= f.text_field :passanger_info %>
+  </div>
+
+  <div class="field">
+    <%= f.label :seat, 'Место'  %><br>
+    <%= f.text_field :seat %>
+  </div>
+
+  <div class="field">
+    <%= f.label :train_id, 'Поезд' %>
+    <%= f.collection_select :train_id, Train.all, :id, :number, {prompt: 'Выберите поезд'} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_station, 'Начальная станция' %>
+    <%= f.collection_select :start_station_id, RailwayStation.all, :id, :title, {prompt: 'Выберите станцию'} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_station, 'Конечная станция' %>
+    <%= f.collection_select :end_station_id, RailwayStation.all, :id, :title, {prompt: 'Выберите станцию'} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Изменить' %>
+  </div>
+<% end %>

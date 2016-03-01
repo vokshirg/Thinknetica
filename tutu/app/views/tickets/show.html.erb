@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 <h2>Билет</h2>
 <p>
   <p><b>Покупатель:</b> <%= @ticket.passanger.name %></p>
@@ -13,5 +13,5 @@
 
 </p>
 
-<!-- <%# link_to 'Редактировать', edit_ticket_path(@ticket) %> | -->
-<%= link_to 'Назад', search_path %>
+<%= link_to 'Удалить', ticket_path(@ticket), method: :delete %> |
+<%= link_to 'Назад', tickets_path %>
