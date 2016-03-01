@@ -2,6 +2,6 @@
   <td><%= coupe_wagon.number %></td>
   <td><%= coupe_wagon.top_places %></td>
   <td><%= coupe_wagon.bottom_places %></td>
-  <td><%= link_to t('common.edit'), edit_admin_wagon_path(coupe_wagon) %></td>
-  <td><%= link_to t('common.delete'), admin_wagon_path(coupe_wagon), method: :delete, data: { confirm: t('common.delete_confirm') } %></td>
+  <td><%= link_to t('common.edit'), edit_admin_wagon_path(coupe_wagon), class: 'btn btn-sm btn-warning' %></td>
+  <td><%= link_to t('common.delete'), admin_wagon_path(coupe_wagon), method: :delete, data: { confirm: t('common.delete_confirm') }, class: 'btn btn-sm btn-danger' %></td>
 </tr>

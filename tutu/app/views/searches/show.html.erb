@@ -7,7 +7,7 @@
   <div class="form-group">
   <%= collection_select(@search, :end_station, RailwayStation.all, :id, :title, {prompt:   'Конечная станция'}, class: 'form-control') %>
 </div>
-  <%= submit_tag "Поиск!", class: 'btn btn-primary' %>
+  <%= submit_tag "Поиск!", class: 'btn btn-sm btn-primary' %>
 <% end %>
 
 

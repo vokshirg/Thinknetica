@@ -2,25 +2,19 @@
 <p>
   Укажите данные пассажира, на которого покупается билет
 </p>
-<%= form_tag tickets_path(current_passanger), method: :post do %>
+<%= form_tag tickets_path(current_passanger), method: :post, class: 'form-inline'  do %>
   <%# render 'common/errors', resource: @ticket %>
-
-  <div class="field">
-
-  <%= fields_for :ticket do |t| %>
-    <%= t.label :passanger_info, 'ФИО'  %><br>
-    <%= t.text_field :passanger_info %>
-    <%= t.hidden_field :end_station_id, value: params[:end_station_id] %>
-    <%= t.hidden_field :start_station_id, value: params[:start_station_id] %>
-    <%= t.hidden_field :train_id, value: params[:train_id] %>
-  <% end %>
-
-</div>
-
-
-  <div class="actions">
-    <%= submit_tag 'Купить билет' %>
+  <div class="form-group">
+    <%= fields_for :ticket do |t| %>
+      <%= t.label :passanger_info, 'ФИО', class: 'sr-only'  %>
+      <%= t.text_field :passanger_info, class: 'form-control', placeholder: 'ФИО' %>
+      <%= t.hidden_field :end_station_id, value: params[:end_station_id] %>
+      <%= t.hidden_field :start_station_id, value: params[:start_station_id] %>
+      <%= t.hidden_field :train_id, value: params[:train_id] %>
+    <% end %>
   </div>
-<% end %>
 
-<%= link_to t('common.back'), search_path %>
+  <%= submit_tag 'Купить билет', class: "btn btn-sm btn-success" %>
+<% end %>
+<br>
+<%= link_to t('common.back'), search_path, class: 'btn btn-sm btn-default' %>

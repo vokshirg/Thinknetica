@@ -1,6 +1,6 @@
 <tr>
   <td><%= passanger.name %></td>
-  <td><%= link_to t('common.show'), admin_passanger_path(passanger) %></td>
-  <td><%= link_to t('common.edit'), edit_admin_passanger_path(passanger) %></td>
-  <td><%= link_to t('common.delete'), [:admin, passanger], method: :delete, data: { confirm: t('common.delete_confirm') } %></td>
+  <td><%= link_to t('common.show'), admin_passanger_path(passanger), class: 'btn btn-sm btn-info' %></td>
+  <td><%= link_to t('common.edit'), edit_admin_passanger_path(passanger), class: 'btn btn-sm btn-warning' %></td>
+  <td><%= link_to t('common.delete'), [:admin, passanger], method: :delete, data: { confirm: t('common.delete_confirm') }, class: 'btn btn-sm btn-danger' %></td>
 </tr>
