@@ -7,7 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <p id="notice" class="notice"><%= notice %></p>
+  <p id="alert"><%= alert %></p>
 
+  <% if passanger_signed_in? %>
+    <%= link_to 'Выйти', destroy_passanger_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Войти', new_passanger_session_path %>
+  <% end %>
 <%= yield %>
 
 <%= render 'common/footer' %>

@@ -1,10 +1,12 @@
 <h1>Tutu</h1>
 <nav>
 	<ul>
-		<li><%= link_to 'Список Станций', railway_stations_path %></li>
-		<li><%= link_to 'Список Поездов', trains_path %></li>
-    <li><%= link_to 'Список Маршрутов', routes_path %></li>
-    <li><%= link_to 'Список пользователей', passangers_path %></li>
+    <% if current_passanger %>
+      <% if current_passanger.admin? %>
+        <li><%= link_to 'Админка', admin_path %></li>
+      <% end %>
+      <li><%= link_to 'Мои билеты', tickets_path %></li>
+    <% end %>
 		<li><%= link_to 'Поиск Билета', search_path %></li>
 	</ul>
 </nav>

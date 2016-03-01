@@ -1,4 +1,5 @@
-class Search < ActiveRecord::Base
+class Search
+  include ActiveModel::Validations
 
   validate :check_st_uniq, on: :find
 

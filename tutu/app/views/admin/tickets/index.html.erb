@@ -1,0 +1,24 @@
+<h1>Список билетов</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Маршрут</th>
+      <th>№ Поезда</th>
+      <th>Место</th>
+      <th>Покупатель:</th>
+      <th>Билет на пассажира:</th>
+      <th>Ссылки</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @tickets %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Купить новый билет', search_path %>
+<br/>
+<%= link_to 'Главная', root_path %>
