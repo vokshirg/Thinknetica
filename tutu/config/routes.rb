@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get 'welcome/admin', as: 'admin', path: 'admin'
-  root 'welcome#index'
+  root 'searches#show'
 
   resources :tickets, only: [:index, :show, :new, :create, :destroy]
   resource :search, only: [:new, :show, :edit] do
