@@ -17,6 +17,6 @@
 
 
   <div class="actions">
-    <%= f.submit "#{@ticket.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{@ticket.new_record? ? t('common.create') : t('common.update')}" %>
   </div>
 <% end %>

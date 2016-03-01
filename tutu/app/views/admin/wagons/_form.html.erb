@@ -34,6 +34,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "#{@wagon.new_record? ? 'Создать' : 'Изменить'}" %>
+    <%= f.submit "#{@wagon.new_record? ? t('common.create') : t('common.update')}" %>
   </div>
 <% end %>

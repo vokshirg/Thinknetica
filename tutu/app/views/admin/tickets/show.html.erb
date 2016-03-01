@@ -1,18 +1,18 @@
 
-<h2>Билет</h2>
+<h2><%= t('.title') %></h2>
 <p>
-  <p><b>Покупатель:</b> <%= @ticket.passanger.name %></p>
-  <p><b>Пассажир:</b> <%= @ticket.passanger_info %></p>
-  <p><b>Место:</b> <%= @ticket.seat %></p>
-  <p><b>Маршрут:</b>  <%= @ticket.route.name %></p>
-  <p><b>Номер поезда:</b>  <%= @ticket.train.number %></p>
-  <p><b>Место отправления:</b>  <%= @ticket.start_station.title %></p>
-  <p><b>Время отправления:</b>  <%= @ticket.leave_time %></p>
-  <p><b>Место назначения:</b>   <%= @ticket.end_station.title %></p>
-  <p><b>Время назначения:</b>   <%= @ticket.arrive_time %></p>
+  <p><b><%= t('.passanger_name') %></b> <%= @ticket.passanger.name %></p>
+  <p><b><%= t('.passanger_info') %></b> <%= @ticket.passanger_info %></p>
+  <p><b><%= t('.seat') %></b> <%= @ticket.seat %></p>
+  <p><b><%= t('.route_name') %></b>  <%= @ticket.route.name %></p>
+  <p><b><%= t('.train_number') %></b>  <%= @ticket.train.number %></p>
+  <p><b><%= t('.start_station_title') %></b>  <%= @ticket.start_station.title %></p>
+  <p><b><%= t('.leave_time') %></b>  <%= @ticket.leave_time %></p>
+  <p><b><%= t('.end_station_title') %></b>   <%= @ticket.end_station.title %></p>
+  <p><b><%= t('.arrive_time') %></b>   <%= @ticket.arrive_time %></p>
 
 </p>
 
-<%= link_to 'Удалить', admin_ticket_path(@ticket), method: :delete %> |
-<%= link_to 'Редактировать', edit_admin_ticket_path(@ticket) %> |
-<%= link_to 'Назад', admin_tickets_path %>
+<%= link_to t('common.delete'), admin_ticket_path(@ticket), method: :delete %> |
+<%= link_to t('common.edit'), edit_admin_ticket_path(@ticket) %> |
+<%= link_to t('common.back'), admin_tickets_path %>

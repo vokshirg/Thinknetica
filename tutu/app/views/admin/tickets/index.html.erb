@@ -1,14 +1,14 @@
-<h1>Список билетов</h1>
+<h1><%= t('.title') %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Маршрут</th>
-      <th>№ Поезда</th>
-      <th>Место</th>
-      <th>Покупатель:</th>
-      <th>Билет на пассажира:</th>
-      <th>Ссылки</th>
+      <th><%= t('.title') %></th>
+      <th><%= t('.route') %></th>
+      <th><%= t('.number') %></th>
+      <th><%= t('.seat') %></th>
+      <th><%= t('.buyer') %></th>
+      <th><%= t('.links') %></th>
     </tr>
   </thead>
 
@@ -21,4 +21,4 @@
 
 <%= link_to 'Купить новый билет', search_path %>
 <br/>
-<%= link_to 'Главная', root_path %>
+<%= link_to t('common.main'), root_path %>

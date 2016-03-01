@@ -1,0 +1,40 @@
+ru:
+  activerecord:
+    models:
+      railway_stations: 'Станция'
+      train: 'Поезд'
+      wagon: 'Вагон'
+      ticket: 'Билет'
+      route: 'Маршрут'
+      passanger: 'Пассажир'
+
+    attributes:
+      railway_station:
+        title: 'Название станции'
+
+      train:
+        number: 'Номер поезда'
+        reverse_sort_true: 'Сортировка с хвоста'
+        reverse_sort_false: 'с головы'
+        current_station: 'Текущая станция'
+        route: 'Маршрут'
+
+      route:
+         name: 'Название маршрута'
+         railway_station_ids: 'Станции в маршруте'
+
+      ticket:
+        passanger_info: 'ФИО пассажира'
+        seat: 'Место'
+        train_id: 'Поезд'
+        start_station: 'Начальная станция'
+        end_station: 'Конечная станция'
+
+    errors:
+      messages:
+        blank: 'не может быть пустым'
+      models:
+        railway_station:
+          attributes:
+            title:
+              blank: 'должно быть заполнено'

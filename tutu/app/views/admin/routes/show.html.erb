@@ -1,21 +1,21 @@
 
 
 <p>
-  <strong>Название:</strong>
+  <strong><%= t('.name') %></strong>
   <%= @route.name %>
   <br>
   <div class="field">
 
     <% if @route.railway_stations.empty? %>
-      <strong>На данном маршруте станции отсутствуют</strong>
+      <strong><%= t('.no_stations') %></strong>
     <% else %>
-      <strong>Список станций в маршруте:</strong>
+      <strong><%= t('.have_stations') %></strong>
       <table>
         <tr>
-          <th>Порядок в маршруте | </th>
-          <th>Название станции | </th>
-          <th>Время прибытия | </th>
-          <th>Время отправления</th>
+          <th><%= t('.sort_number') %></th>
+          <th><%= t('.station_name') %></th>
+          <th><%= t('.arrive_time') %></th>
+          <th><%= t('.leave_time') %></th>
         </tr>
           <% @route.railway_stations.each do |st| %>
             <tr>
@@ -25,7 +25,7 @@
                 <td><%= st.title %></td>
                 <td><%= text_field_tag(:arrive_time, st.arrive_time(@route)) %></td>
                 <td><%= text_field_tag(:leave_time, st.leave_time(@route)) %></td>
-                <td><%= submit_tag 'Сохранить' %></td>
+                <td><%= submit_tag t('.save') %></td>
               <% end %>
 
             </tr>
@@ -36,18 +36,18 @@
 
   <div class="field">
     <% if @route.trains.empty? %>
-      <strong>На данном маршруте нет поездов</strong>
+      <strong><%= t('.no_trains') %></strong>
     <% else %>
-      <strong>Список поездов на маршруте:</strong>
+      <strong><%= t('.have_trains') %></strong>
       <ul>
         <% @route.trains.each do |train| %>
-            <li> <%= train.number %></li>
+            <li> <%= link_to train.number, admin_train_path(train) %></li>
         <% end %>
       </ul>
     <% end %>
   </div>
 </p>
 
-<%= link_to 'Редактировать', edit_admin_route_path(@route) %> |
-<%= link_to 'Назад', admin_routes_path %>
-<!-- <%= link_to 'Назад', onclick = "history.back();" %> -->
+<%= link_to t('common.edit'), edit_admin_route_path(@route) %> |
+<%= link_to t('common.back'), admin_routes_path %>
+<!-- <%= link_to t('common.back'), onclick = "history.back();" %> -->
