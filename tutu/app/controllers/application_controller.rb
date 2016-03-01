@@ -5,11 +5,16 @@ class ApplicationController < ActionController::Base
 
 
 
-  def after_sign_in_path_for(current_passanger)
-    if current_passanger.admin?
-      admin_path
+  def after_sign_in_path_for(resource)
+    sign_in_url = new_passanger_session_url
+    if request.referer == sign_in_url
+      super
     else
-      search_path
+      if current_passanger.admin?
+        stored_location_for(resource) || request.referer || admin_path
+      else
+        stored_location_for(resource) || request.referer || search_path
+      end
     end
   end
 end
