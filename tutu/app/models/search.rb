@@ -19,19 +19,9 @@ class Search
     start_station = RailwayStation.find(@start_station_id)
     end_station = RailwayStation.find(@end_station_id)
 
-    unless start_station.blank? && end_station.blank?
-
-      trains_start_st = Train.joins(route: :railway_stations).where("railway_station_id = ?" , start_station)
-      trains_end_st =   Train.joins(route: :railway_stations).where("railway_station_id = ? ", end_station)
-      return trains_start_st & trains_end_st
-
-    else
-
-      errors.add(:start_station_id, "Укажите начальную станцию") if start_station.blank?
-      errors.add(:end_station_id, "Укажите конечную станцию") if end_station.blank?
-      return nil
-
-    end
+    trains_start_st = Train.joins(route: :railway_stations).where("railway_station_id = ?" , start_station)
+    trains_end_st =   Train.joins(route: :railway_stations).where("railway_station_id = ? ", end_station)
+    return trains_start_st & trains_end_st
   end
 
 private
