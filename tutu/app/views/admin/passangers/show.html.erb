@@ -1,7 +1,11 @@
 <h2>Пассажир</h2>
 <p>
   <p><b>Пассажир:</b> <%= @passanger.name %></p>
-  <p><b>Билеты:</b></p>
+
+
+  <%= link_to t('common.edit'), edit_admin_passanger_path(@passanger) , class: 'btn btn-sm btn-warning'%>
+  <%= link_to t('common.back'), admin_passangers_path , class: 'btn btn-sm btn-default'%>
+  <h4>Билеты:</h4>
   <table class="table">
     <thead>
       <tr>
@@ -21,6 +25,3 @@
 
 
 </p>
-
-<%= link_to t('common.edit'), edit_admin_passanger_path(@passanger) , class: 'btn btn-sm btn-warning'%> |
-<%= link_to t('common.back'), admin_passangers_path , class: 'btn btn-sm btn-default'%>
