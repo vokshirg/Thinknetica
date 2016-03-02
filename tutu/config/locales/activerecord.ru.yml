@@ -9,6 +9,8 @@ ru:
       passanger: 'Пассажир'
 
     attributes:
+
+
       railway_station:
         title: 'Название станции'
 
@@ -38,3 +40,13 @@ ru:
           attributes:
             title:
               blank: 'должно быть заполнено'
+
+  activemodel:
+    attributes:
+      search:
+        start_station_id: 'Начальная станция'
+        end_station_id: 'Конечная станция'
+        stantions: 'Станции'
+    errors:
+      messages:
+        blank: ' не может быть пустой'

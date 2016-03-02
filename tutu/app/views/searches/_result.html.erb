@@ -3,10 +3,9 @@
   <td><%= result.route.name %></td>
   <td>
     <%= form_tag new_ticket_path, method: :get do %>
-      <%= hidden_field_tag :end_station_id, @end_station.id %>
-      <%= hidden_field_tag :start_station_id, @start_station.id %>
+      <%= hidden_field_tag :end_station_id, @end_station_id %>
+      <%= hidden_field_tag :start_station_id, @start_station_id %>
       <%= hidden_field_tag :train_id, result.id %>
-      <%# hidden_field_tag :passanger_id, current_passanger.id %>
       <%= submit_tag 'Купить', class: "btn btn-sm btn-success btn-sm" %>
     <% end %>
 

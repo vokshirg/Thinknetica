@@ -4,14 +4,14 @@ class SearchesController < ApplicationController
   end
 
   def find
-    @start_station = RailwayStation.find(params[:start_station])
-    @end_station = RailwayStation.find(params[:end_station])
-    trains_start_st = Train.joins(route: :railway_stations).where("railway_station_id = ?" , @start_station)
-    trains_end_st =   Train.joins(route: :railway_stations).where("railway_station_id = ? ", @end_station)
-
-    @results = trains_start_st & trains_end_st
-
-    render :show, start_station: params[:start_station], end_station: params[:end_station]
+    @start_station_id = params[:search][:start_station_id]
+    @end_station_id = params[:search][:end_station_id]
+    @search = Search.new(@start_station_id, @end_station_id )
+    if @search.valid?
+      @results = @search.find
+    end
+    flash[:error] = @search.errors.full_messages
+    render :show
   end
 
 end
