@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229104154) do
+ActiveRecord::Schema.define(version: 20160302050719) do
 
   create_table "passangers", force: :cascade do |t|
     t.string   "name",                   default: "",    null: false
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20160229104154) do
     t.datetime "leave_time"
   end
 
+  add_index "railway_stations_routes", ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
+  add_index "railway_stations_routes", ["route_id"], name: "index_railway_stations_routes_on_route_id"
+
   create_table "routes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -65,6 +68,11 @@ ActiveRecord::Schema.define(version: 20160229104154) do
     t.integer  "train_id"
   end
 
+  add_index "tickets", ["end_station_id"], name: "index_tickets_on_end_station_id"
+  add_index "tickets", ["passanger_id"], name: "index_tickets_on_passanger_id"
+  add_index "tickets", ["start_station_id"], name: "index_tickets_on_start_station_id"
+  add_index "tickets", ["train_id"], name: "index_tickets_on_train_id"
+
   create_table "trains", force: :cascade do |t|
     t.string   "number"
     t.datetime "created_at",                         null: false
@@ -73,6 +81,9 @@ ActiveRecord::Schema.define(version: 20160229104154) do
     t.integer  "route_id"
     t.boolean  "reverse_sort",       default: false
   end
+
+  add_index "trains", ["current_station_id"], name: "index_trains_on_current_station_id"
+  add_index "trains", ["route_id"], name: "index_trains_on_route_id"
 
   create_table "wagons", force: :cascade do |t|
     t.integer "number"
@@ -84,5 +95,8 @@ ActiveRecord::Schema.define(version: 20160229104154) do
     t.integer "train_id"
     t.string  "type"
   end
+
+  add_index "wagons", ["id", "type"], name: "index_wagons_on_id_and_type"
+  add_index "wagons", ["train_id"], name: "index_wagons_on_train_id"
 
 end
